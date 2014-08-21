@@ -1,4 +1,5 @@
 ---
+layout: default
 title: Java虚拟机的启动与程序的运行
 ---
 
