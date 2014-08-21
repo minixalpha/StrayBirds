@@ -3,6 +3,21 @@ layout: default
 title: Java虚拟机的启动与程序的运行
 ---
 
+这篇文章是从 OpenJDK 源代码的角度讲当我们运行了 
+
+```
+java -classpath . hello
+```
+
+之后，java.exe 如何从 main 函数开始执行，启动虚拟机，并执行字节码中的代码。
+
+
+## 实验环境
+
+要了解一个系统是如何运行的，光看是不行的，要实际地运行，调试，修改才能对系统的动作方式有所了解。我是在 windows 7 64位平台上，使用 Visual Studio 2010 来调试，运行的。按照 GitHub 上的一个项目 [OpenJDK-Research](https://github.com/codefollower/OpenJDK-Research) 中说的来就可以了。另外，在 linux 平台上用 GDB 调试，可以参考 [HotSpot 实战](http://book.douban.com/subject/25847620/)，如果想用 NetBeans 调试，可以参考 [深入理解Java虚拟机](http://book.douban.com/subject/24722612/) 这本书上的讲解。
+
+
+## 调用栈
 ```
 openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
   openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::JLI_Launch
@@ -19,6 +34,7 @@ openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
 ```
 
 
+## 关键函数
 ```java
 /*
  * Load a jvm from "jvmpath" and initialize the invocation functions.
