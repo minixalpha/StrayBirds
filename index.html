@@ -1,8 +1,8 @@
 ---
+layout: default
 title: 首页
 ---
 
-{% raw %}
 <ul class="post-list">
     {% for post in site.posts %}
         <a href="{{site.baseurl}}{{post.url}}"> {{ post.title }}  </a> <br>
@@ -10,5 +10,4 @@ title: 首页
         {{ post.category }} <br>
         {{ post.excerpt }} 
     {% endfor %}
-{% endraw %}
 </ul>
