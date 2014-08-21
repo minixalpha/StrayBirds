@@ -1,3 +1,7 @@
+---
+title: Java虚拟机的启动与程序的运行
+---
+
 ```
 openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
   openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::JLI_Launch
