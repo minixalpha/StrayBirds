@@ -19,7 +19,7 @@ openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
 ```
 
 
-```
+```java
 /*
  * Load a jvm from "jvmpath" and initialize the invocation functions.
  */
@@ -60,7 +60,7 @@ LoadJavaVM(const char *jvmpath, InvocationFunctions *ifn)
 ```
 
 
-```
+```java
 int JNICALL
 JavaMain(void * _args)
 {
