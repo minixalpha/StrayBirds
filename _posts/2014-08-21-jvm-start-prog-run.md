@@ -328,10 +328,10 @@ JavaMain(void * _args)
 
 我之前在 Windows 下调试，直接调试的 HotSpot 动态链接库，可以看到的第一个函数就是 `JNI_CreateJavaVM`, 之前的调用都位于 `java.exe` 代码中。因为 Windows 中 `java.exe` 不是我们自己编译的，看不到其中调用关系。如下图所示：
 
-![invoke_stack](../images/invoke_stack.png)
+![invoke_stack](/StrayBirds/images/invoke_stack.png)
 
 同时可以看到两个线程
 
-![threads](../images/thread.png)
+![threads](/StrayBirds/images/thread.png)
 
 
