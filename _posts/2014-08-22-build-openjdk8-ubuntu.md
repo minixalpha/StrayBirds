@@ -185,3 +185,36 @@ openjdk version "1.8.0-internal-fastdebug"
 OpenJDK Runtime Environment (build 1.8.0-internal-fastdebug-minix_2014_08_22_10_56-b00)
 OpenJDK Server VM (build 25.40-b05-fastdebug, mixed mode)
 ```
+
+## 调试 
+
+下面展示一个启动 `GDB`, 加断点，并运行一个 Java 程序的过程。
+
+
+```
+$ gdb java
+
+GNU gdb (Ubuntu/Linaro 7.4-2012.04-0ubuntu2.1) 7.4-2012.04
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+For bug reporting instructions, please see:
+<http://bugs.launchpad.net/gdb-linaro/>...
+Reading symbols from /home/minix/openjdk8/jdk8u/build/fastdebug/jdk/bin/java...done.
+
+(gdb) b main
+Breakpoint 1 at 0x8048410: file /home/minix/openjdk8/jdk8u/jdk/src/share/bin/main.c, line 94.
+
+(gdb) r -classpath PossibleReordering
+
+Starting program: /home/minix/openjdk8/jdk8u/build/fastdebug/jdk/bin/java -classpath PossibleReordering
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/i386-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=3, argv=0xbfffeca4)
+    at /home/minix/openjdk8/jdk8u/jdk/src/share/bin/main.c:94
+
+```
