@@ -14,7 +14,15 @@ java -classpath . hello
 
 ## 实验环境
 
-要了解一个系统是如何运行的，光看是不行的，要实际地运行，调试，修改才能对系统的动作方式有所了解。我是在 windows 7 64位平台上，使用 Visual Studio 2010 来调试，运行的。按照 GitHub 上的一个项目 [OpenJDK-Research](https://github.com/codefollower/OpenJDK-Research) 中说的来就可以了。另外，在 linux 平台上用 GDB 调试，可以参考 [HotSpot 实战](http://book.douban.com/subject/25847620/)，如果想用 NetBeans 调试，可以参考 [深入理解Java虚拟机](http://book.douban.com/subject/24722612/) 这本书上的讲解。
+要了解一个系统是如何运行的，光看是不行的，要实际地运行，调试，修改才能对系统的动作方式有所了解。
+
+
+起初我是按照 GitHub 上的一个项目 [OpenJDK-Research](https://github.com/codefollower/OpenJDK-Research) 在 windows 7 64位平台上，使用 Visual Studio 2010 来调试，运行的。但是后来发现，这个项目仅仅编译了HotSpot虚拟机， `java.exe` 并没有编译。
+
+这里我们首先弄明白 `java.exe` 和虚拟机之间的关系。我们使用 Visual Studio 编译出的 HotSpot 是虚拟机，是作为动态链接库的形式被 `java.exe` 加载的。`java.exe` 负责解析参数，加载虚拟机链接库，它需要调用虚拟机中的函数来完成执行 Java 程序的功能。所以，你在HotSpot的源代码中找不到启动的程序的 `main` 函数，本来在 openjdk7 中，虚拟机是带有一个启动器的，在目录 `openjdk/hotspot/src/share/tools/launcher/java.c` 中可以找到 main 函数，但是在 openjdk8 中，这个启动器不见了，被放在 `openjdk/jdk` 目录下，而不是 `openjdk/hotspot` 目录下了，给我们的学习过程造成了伤害。 
+
+所以我后来就在 linux 平台上调试了，因为在 windows 平台上，我始终没有把整个 openjdk8 编译成功，编译不出 `java.exe`, 仅仅编译了 `hotspot`，是看不到从 main 函数开始的执行的。关于如何在 linux 平台下编译调试 openjdk8，可以参考我的另一篇文章 [在Ubuntu 12.04 上编译 openjdk8](http://minixalpha.github.io/StrayBirds/2014/08/22/build-openjdk8-ubuntu.html). 
+
 
 
 ## 调用栈
