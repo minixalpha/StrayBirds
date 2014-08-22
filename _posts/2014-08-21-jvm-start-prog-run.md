@@ -41,70 +41,219 @@ openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
                         
 ```
 
+## 执行过程
 
-## 关键函数
-```java
-/*
- * Load a jvm from "jvmpath" and initialize the invocation functions.
- */
-jboolean
-LoadJavaVM(const char *jvmpath, InvocationFunctions *ifn)
+* main.c (jdk8u/jdk/src/share/bin/main.c)
+
+```c
+#ifdef JAVAW
+
+char **__initenv;
+
+int WINAPI
+WinMain(HINSTANCE inst, HINSTANCE previnst, LPSTR cmdline, int cmdshow)
 {
-    HINSTANCE handle;
+    int margc;
+    char** margv;
+    const jboolean const_javaw = JNI_TRUE;
 
-    JLI_TraceLauncher("JVM path is %s\n", jvmpath);
+    __initenv = _environ;
+#else /* JAVAW */
+int
+main(int argc, char **argv)
+{
+    int margc;
+    char** margv;
+    const jboolean const_javaw = JNI_FALSE;
+#endif /* JAVAW */
+#ifdef _WIN32
+    {
+        int i = 0;
+        if (getenv(JLDEBUG_ENV_ENTRY) != NULL) {
+            printf("Windows original main args:\n");
+            for (i = 0 ; i < __argc ; i++) {
+                printf("wwwd_args[%d] = %s\n", i, __argv[i]);
+            }
+        }
+    }
+    JLI_CmdToArgs(GetCommandLine());
+    margc = JLI_GetStdArgc();
+    // add one more to mark the end
+    margv = (char **)JLI_MemAlloc((margc + 1) * (sizeof(char *)));
+    {
+        int i = 0;
+        StdArg *stdargs = JLI_GetStdArgs();
+        for (i = 0 ; i < margc ; i++) {
+            margv[i] = stdargs[i].arg;
+        }
+        margv[i] = NULL;
+    }
+#else /* *NIXES */
+    margc = argc;
+    margv = argv;
+#endif /* WIN32 */
+    return JLI_Launch(margc, margv,
+                   sizeof(const_jargs) / sizeof(char *), const_jargs,
+                   sizeof(const_appclasspath) / sizeof(char *), const_appclasspath,
+                   FULL_VERSION,
+                   DOT_VERSION,
+                   (const_progname != NULL) ? const_progname : *margv,
+                   (const_launcher != NULL) ? const_launcher : *margv,
+                   (const_jargs != NULL) ? JNI_TRUE : JNI_FALSE,
+                   const_cpwildcard, const_javaw, const_ergo_class);
+}
 
-    /*
-     * The Microsoft C Runtime Library needs to be loaded first.  A copy is
-     * assumed to be present in the "JRE path" directory.  If it is not found
-     * there (or "JRE path" fails to resolve), skip the explicit load and let
-     * nature take its course, which is likely to be a failure to execute.
-     *
-     */
-    LoadMSVCRT();
+```
 
-    /* Load the Java VM DLL */
-    if ((handle = LoadLibrary(jvmpath)) == 0) {
-        JLI_ReportErrorMessage(DLL_ERROR4, (char *)jvmpath);
-        return JNI_FALSE;
+这就是传说中的 `main` 函数的真身，可以看出，它针对操作系统是否使用 Windows ，执行了不同的代码段，最终调用 `JLI_Launch` 函数。
+
+* JLI_Lanuch(jdk8u/jdk/src/share/bin/java.c)
+
+```c
+int
+JLI_Launch(int argc, char ** argv,              /* main argc, argc */
+        int jargc, const char** jargv,          /* java args */
+        int appclassc, const char** appclassv,  /* app classpath */
+        const char* fullversion,                /* full version defined */
+        const char* dotversion,                 /* dot version defined */
+        const char* pname,                      /* program name */
+        const char* lname,                      /* launcher name */
+        jboolean javaargs,                      /* JAVA_ARGS */
+        jboolean cpwildcard,                    /* classpath wildcard*/
+        jboolean javaw,                         /* windows-only javaw */
+        jint ergo                               /* ergonomics class policy */
+)
+{
+
+...
+
+    if (!LoadJavaVM(jvmpath, &ifn)) {
+        return(6);
     }
 
-    /* Now get the function addresses */
-    ifn->CreateJavaVM =
-        (void *)GetProcAddress(handle, "JNI_CreateJavaVM");
-    ifn->GetDefaultJavaVMInitArgs =
-        (void *)GetProcAddress(handle, "JNI_GetDefaultJavaVMInitArgs");
-    if (ifn->CreateJavaVM == 0 || ifn->GetDefaultJavaVMInitArgs == 0) {
-        JLI_ReportErrorMessage(JNI_ERROR1, (char *)jvmpath);
-        return JNI_FALSE;
-    }
+...
 
-    return JNI_TRUE;
+    return JVMInit(&ifn, threadStackSize, argc, argv, mode, what, ret);
+
 }
 ```
 
+从这里可以看出 JLI_Lanuch 的各个参数的含义, 我列出了关键代码， 其中 `LoadJavaVM` 完成载入虚拟机动态链接库，并初始化 `ifn` 中的函数指针，HotSpot虚拟机就是这样向启动器 `java` 提供功能。
 
-```java
-int JNICALL
-JavaMain(void * _args)
+* LoadJavaVM (jdk8u/jdk/src/solaris/bin/java_md_solinux.c)
+
+这个函数涉及动态链接库，不同操作系统有不同接口，这里是针对 linux 的。
+
+```c
+jboolean
+LoadJavaVM(const char *jvmpath, InvocationFunctions *ifn)
 {
     ...
     
+    libjvm = dlopen(jvmpath, RTLD_NOW + RTLD_GLOBAL);
+    
+    ...
+    
+    ifn->CreateJavaVM = (CreateJavaVM_t)
+    dlsym(libjvm, "JNI_CreateJavaVM");
+    
+    ifn->GetDefaultJavaVMInitArgs = (GetDefaultJavaVMInitArgs_t)
+    dlsym(libjvm, "JNI_GetDefaultJavaVMInitArgs");
+
+    ifn->GetCreatedJavaVMs = (GetCreatedJavaVMs_t)
+        dlsym(libjvm, "JNI_GetCreatedJavaVMs");
+
+  ...
+  
+```
+
+从这里可以看出载入动态链接库以及初始化 ifn 数据结构的代码。在我的调试版本中，`javapath` 指向之前编译出的动态链接库 `jdk8u/build/fastdebug/jdk/lib/i386/server/libjvm.so`. 
+
+
+* JVM_Init(jdk8u/jdk/src/solaris/bin/java_md_solinux.c)
+
+回到 `JLI_Lanuch` 函数，我们最终进入 `JVM_Init`, 这个函数会启动一个新线程。
+
+
+```c
+int
+JVMInit(InvocationFunctions* ifn, jlong threadStackSize,
+        int argc, char **argv,
+        int mode, char *what, int ret)
+{
+    ShowSplashScreen();
+    return ContinueInNewThread(ifn, threadStackSize, argc, argv, mode, what, ret);
+}
+```
+
+`ContinueInNewThread` 会调用另一个函数 `ContinueInNewThread0` 启动线程，执行 `JavaMain` 函数:
+
+
+```c
+int
+ContinueInNewThread0(int (JNICALL *continuation)(void *), jlong stack_size, void * args) {
+
+...
+
+    if (pthread_create(&tid, &attr, (void *(*)(void*))continuation, (void*)args) == 0) {
+      void * tmp;
+      pthread_join(tid, &tmp);
+      rslt = (int)tmp;
+    } else {
+     /*
+      * Continue execution in current thread if for some reason (e.g. out of
+      * memory/LWP)  a new thread can't be created. This will likely fail
+      * later in continuation as JNI_CreateJavaVM needs to create quite a
+      * few new threads, anyway, just give it a try..
+      */
+      rslt = continuation(args);
+    }
+
+...
+
+
+```
+
+
+* JavaMain(jdk8u/jdk/src/share/bin/java.c)
+
+这个函数会初始化虚拟机，加载各种类，并执行应用程序中的 `main` 函数。注释很详细。
+
+
+```c
+
+int JNICALL
+JavaMain(void * _args)
+{
+    JavaMainArgs *args = (JavaMainArgs *)_args;
+    int argc = args->argc;
+    char **argv = args->argv;
+    int mode = args->mode;
+    char *what = args->what;
     InvocationFunctions ifn = args->ifn;
 
     JavaVM *vm = 0;
     JNIEnv *env = 0;
-    
-    ...
-    
+    jclass mainClass = NULL;
+    jclass appClass = NULL; // actual application class being launched
+    jmethodID mainID;
+    jobjectArray mainArgs;
+    int ret = 0;
+    jlong start, end;
+
+    RegisterThread();
+
     /* Initialize the virtual machine */
     start = CounterGet();
     if (!InitializeJVM(&vm, &env, &ifn)) {
         JLI_ReportErrorMessage(JVM_ERROR1);
         exit(1);
     }
-    
-    
+
+    ...
+
+    ret = 1;
+
     /*
      * Get the application's main class.
      *
@@ -170,4 +319,13 @@ JavaMain(void * _args)
     ret = (*env)->ExceptionOccurred(env) == NULL ? 0 : 1;
     LEAVE();
 }
+
 ```
+
+注意 InitializeJVM 函数，它会调用之前初始化的 `ifn` 数据结构中的 `CreateJavaVM` 函数，这个函数指向虚拟机动态链接库中的 `JNI_CreateJavaVM` 函数，这个函数会真正创建虚拟机。
+
+这个函数位于 `jdk8u\hotspot\src\share\vm\prims\jni.cpp`。
+
+我之前在 Windows 下调试，直接调试的 HotSpot 动态链接库，可以看到的第一个函数就是 `JNI_CreateJavaVM`, 之前的调用都位于 `java.exe` 代码中。因为 Windows 中 `java.exe` 不是我们自己编译的，看不到其中调用关系。
+
+
