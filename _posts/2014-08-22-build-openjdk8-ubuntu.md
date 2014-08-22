@@ -12,14 +12,14 @@ title: 在Ubuntu 12.04 上编译 openjdk8
 make sanity
 ```
 
-会提示找到 sanity 规则，然后的编译过程其实基本就直接 
+会提示找不到 sanity 规则，然后编译过程其实基本就直接 
 
 ```
 ./configure
 make all
 ```
 
-其实最好就是读官方的 README,
+官方的 README 写的很清楚。
 
 下面记录下过程
 
@@ -28,15 +28,15 @@ make all
 
 
 ```
-hg clone http://hg.openjdk.java.net/jdk8/jdk8 YourOpenJDK 
-cd YourOpenJDK 
+hg clone http://hg.openjdk.java.net/jdk8u/jdk8u jdk8u
+cd jdk8u 
 bash ./get_source.sh
 ```
 
 然后下载代码，进入代码目录：
 
 ```
-cd YourOpenJDK
+cd jdk8u
 ```
 
 
@@ -63,7 +63,7 @@ export PATH="/usr/lib/jvm/java-7-openjdk/bin:${PATH}"
 bash ./configure
 ```
 
-这样生成相应配置
+这样生成相应默认配置，如果有需要，比如想编译出调试版本的，可以给 `configure` 加参数。
 
 ```
 A new configuration has been successfully created in
@@ -91,7 +91,97 @@ You do not have ccache installed. Try installing it.
 You might be able to fix this by running 'sudo apt-get install ccache'.
 ```
 
-可以看出提示缺少 ccache 包，按提示安装就可以了。从提示可以看出，
+可以看出提示缺少 ccache 包，按提示安装就可以了。从提示可以看出，编译级别是 `release`，另外还有几种编译级别，可以在调试时候提供更多的信息。例如：
+
+```
+bash ./configure --enable-debug
+```
+
+这样会生成 `fastdebug` 版本的配置信息：
+
+```
+A new configuration has been successfully created in
+/home/minix/openjdk8/jdk8u/build/linux-x86-normal-server-fastdebug
+using configure arguments '--enable-debug'.
+
+Configuration summary:
+* Debug level:    fastdebug
+* JDK variant:    normal
+* JVM variants:   server
+* OpenJDK target: OS: linux, CPU architecture: x86, address length: 32
+
+Tools summary:
+* Boot JDK:       java version "1.7.0_17" Java(TM) SE Runtime Environment (build 1.7.0_17-b02) Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)  (at /home/zhaoxk/Software/jdk1.7.0_17)
+* C Compiler:     gcc-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/gcc-4.6)
+* C++ Compiler:   g++-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/g++-4.6)
+
+Build performance summary:
+* Cores to use:   3
+* Memory limit:   3878 MB
+* ccache status:  installed and in use
+```
+
+注意编译的级别已经变成 `fastdebug` 了。
 
 
 ## 编译
+
+编译直接 
+
+```
+make
+```
+
+就可以了，如果提示
+
+```
+No CONF given, but more than one configuration found in /home/minix/openjdk8/jdk8u//build.
+Available configurations:
+* linux-x86-normal-server-fastdebug
+* linux-x86-normal-server-release
+Please retry building with CONF=<config pattern> (or SPEC=<specfile>)
+
+```
+
+需要指定使用哪个编译配置：
+
+```
+make CONF=linux-x86-normal-server-fastdebug
+```
+
+最后编译成功后，会提示：
+
+```
+----- Build times -------
+Start 2014-08-22 10:56:52
+End   2014-08-22 11:16:31
+00:00:30 corba
+00:13:38 hotspot
+00:00:22 jaxp
+00:00:30 jaxws
+00:04:10 jdk
+00:00:29 langtools
+00:19:39 TOTAL
+```
+
+查看 `build` 目录，可以看到 `linux-x86-normal-server-fastdebug`
+
+切换到 `jdk/bin` 目录：
+
+```
+cd linux-x86-normal-server-fastdebug/jdk/bin/
+```
+
+运行可执行文件 java
+
+```
+./java -version
+```
+
+会得到提示
+
+```
+openjdk version "1.8.0-internal-fastdebug"
+OpenJDK Runtime Environment (build 1.8.0-internal-fastdebug-minix_2014_08_22_10_56-b00)
+OpenJDK Server VM (build 25.40-b05-fastdebug, mixed mode)
+```
