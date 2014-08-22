@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 在Ubuntu 12.04 上编译 openjdk8
-```
+---
 
 
 ## 前言
