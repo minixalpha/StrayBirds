@@ -27,16 +27,16 @@ java -classpath . hello
 
 ## 调用栈
 ```
-openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\main.c::WinMain/main
-  openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::JLI_Launch
-    openjdk-8-src-b132-03_mar_2014\jdk\src\windows\bin\java_md.c::LoadJavaVM # Load JVM Library: jvm.dll
-    openjdk-8-src-b132-03_mar_2014\jdk\src\windows\bin\java_md.c::JVMInit # Create JVM
-      openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::ContinueInNewThread
-          openjdk-8-src-b132-03_mar_2014\jdk\src\windows\bin\java_md.c::ContinueInNewThread0(JavaMain, threadStackSize, (void*)&args);
-            _beginthreadex(NULL, (unsigned)stack_size, JavaMain, args, 0, &thread_id)
-              openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::JavaMain
-                openjdk-8-src-b132-03_mar_2014\jdk\src\share\bin\java.c::InitializeJVM
-                  openjdk-8-src-b132-03_mar_2014\hotspot\src\share\vm\prims\jni.cpp::JNI_CreateJavaVM
+jdk8u/jdk/src/share/bin/main.c::WinMain/main
+  jdk8u/jdk/src/share/bin/java.c::JLI_Launch
+    jdk8u/jdk/src/solaris/bin/java_md_solinux.c::LoadJavaVM # Load JVM Library: libjvm.so
+    jdk8u/jdk/src/solaris/bin/java_md_solinux.c::JVMInit # Create JVM
+      jdk8u/jdk/src/share/bin/java.c::ContinueInNewThread
+        jdk8u/jdk/src/solaris/bin/java_md_solinux.c::ContinueInNewThread0(JavaMain, threadStackSize, (void*)&args);
+          pthread_create(&tid, &attr, (void *(*)(void*))continuation, (void*)args)
+            jdk8u/jdk/src/share/bin/java.c::JavaMain
+              jdk8u/jdk/src/share/bin/java.c::InitializeJVM
+                jdk8u\hotspot\src\share\vm\prims\jni.cpp::JNI_CreateJavaVM
                         
                         
 ```
