@@ -77,7 +77,7 @@ Configuration summary:
 * OpenJDK target: OS: linux, CPU architecture: x86, address length: 32
 
 Tools summary:
-* Boot JDK:       java version "1.7.0_17" Java(TM) SE Runtime Environment (build 1.7.0_17-b02) Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)  (at /home/zhaoxk/Software/jdk1.7.0_17)
+* Boot JDK:       java version "1.7.0_17" Java(TM) SE Runtime Environment (build 1.7.0_17-b02) Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)  (at /home/minix/Software/jdk1.7.0_17)
 * C Compiler:     gcc-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/gcc-4.6)
 * C++ Compiler:   g++-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/g++-4.6)
 
@@ -111,7 +111,7 @@ Configuration summary:
 * OpenJDK target: OS: linux, CPU architecture: x86, address length: 32
 
 Tools summary:
-* Boot JDK:       java version "1.7.0_17" Java(TM) SE Runtime Environment (build 1.7.0_17-b02) Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)  (at /home/zhaoxk/Software/jdk1.7.0_17)
+* Boot JDK:       java version "1.7.0_17" Java(TM) SE Runtime Environment (build 1.7.0_17-b02) Java HotSpot(TM) Server VM (build 23.7-b01, mixed mode)  (at /home/minix/Software/jdk1.7.0_17)
 * C Compiler:     gcc-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/gcc-4.6)
 * C++ Compiler:   g++-4.6 (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (at /usr/bin/g++-4.6)
 
