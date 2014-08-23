@@ -322,9 +322,76 @@ JavaMain(void * _args)
 
 ```
 
-注意 InitializeJVM 函数，它会调用之前初始化的 `ifn` 数据结构中的 `CreateJavaVM` 函数，这个函数指向虚拟机动态链接库中的 `JNI_CreateJavaVM` 函数，这个函数会真正创建虚拟机。
+注意 InitializeJVM 函数，它会调用之前初始化的 `ifn` 数据结构中的 `CreateJavaVM` 函数.
 
-这个函数位于 `jdk8u\hotspot\src\share\vm\prims\jni.cpp`。
+* InitializeJVM(jdk8u/jdk/src/share/bin/java.c::InitializeJVM)
+
+```c
+static jboolean
+InitializeJVM(JavaVM **pvm, JNIEnv **penv, InvocationFunctions *ifn)
+{
+    JavaVMInitArgs args;
+    jint r;
+
+    memset(&args, 0, sizeof(args));
+    args.version  = JNI_VERSION_1_2;
+    args.nOptions = numOptions;
+    args.options  = options;
+    args.ignoreUnrecognized = JNI_FALSE;
+
+    if (JLI_IsTraceLauncher()) {
+        int i = 0;
+        printf("JavaVM args:\n    ");
+        printf("version 0x%08lx, ", (long)args.version);
+        printf("ignoreUnrecognized is %s, ",
+               args.ignoreUnrecognized ? "JNI_TRUE" : "JNI_FALSE");
+        printf("nOptions is %ld\n", (long)args.nOptions);
+        for (i = 0; i < numOptions; i++)
+            printf("    option[%2d] = '%s'\n",
+                   i, args.options[i].optionString);
+    }
+
+    r = ifn->CreateJavaVM(pvm, (void **)penv, &args);
+    JLI_MemFree(options);
+    return r == JNI_OK;
+}
+```
+
+
+`ifn->CreateJavaVM`指向虚拟机动态链接库中的 `JNI_CreateJavaVM` 函数，这个函数会真正创建虚拟机。 
+
+* JNI_CreateJavaVM(jdk8u\hotspot\src\share\vm\prims\jni.cpp)
+
+```c
+_JNI_IMPORT_OR_EXPORT_ jint JNICALL JNI_CreateJavaVM(JavaVM **vm, void **penv, void *args) {
+  ...
+  
+    result = Threads::create_vm((JavaVMInitArgs*) args, &can_try_again);
+  if (result == JNI_OK) {
+    JavaThread *thread = JavaThread::current();
+    /* thread is thread_in_vm here */
+    *vm = (JavaVM *)(&main_vm);
+    *(JNIEnv**)penv = thread->jni_environment();
+
+    // Tracks the time application was running before GC
+    RuntimeService::record_application_start();
+
+    // Notify JVMTI
+    if (JvmtiExport::should_post_thread_life()) {
+       JvmtiExport::post_thread_start(thread);
+    }
+
+    ...
+    
+  }
+  
+  ...
+
+}
+```
+
+其中的 `create_vm` 函数是虚拟机初始化的关键，它初始化了虚拟机的大部分组件。
+
 
 我之前在 Windows 下调试，直接调试的 HotSpot 动态链接库，可以看到的第一个函数就是 `JNI_CreateJavaVM`, 之前的调用都位于 `java.exe` 代码中。因为 Windows 中 `java.exe` 不是我们自己编译的，看不到其中调用关系。如下图所示：
 
