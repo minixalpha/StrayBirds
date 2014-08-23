@@ -39,6 +39,7 @@ bash ./get_source.sh
 cd jdk8u
 ```
 
+代码目录中有一个 `README-builds.html` 描述了如何　build 整个系统,一些细节需要自己去寻找。
 
 ## 安装依赖 
 
@@ -122,6 +123,8 @@ Build performance summary:
 ```
 
 注意编译的级别已经变成 `fastdebug` 了。
+
+`--enable-debug` 其实相当于　`--with-debug-level=fastdebug`,　可以通过这样的参数选项指定编译级别。一共可以指定三种级别: `release, fastdebug, slowdebug`, `slowdebug` 含有最丰富的调试信息，没有这些信息，很多执行可能被优化掉，我们单步执行时，可能看不到一些变量的值。所以最好指定`slowdebug` 为编译级别
 
 
 ## 编译
