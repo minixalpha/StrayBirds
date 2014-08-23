@@ -358,7 +358,42 @@ InitializeJVM(JavaVM **pvm, JNIEnv **penv, InvocationFunctions *ifn)
 ```
 
 
-`ifn->CreateJavaVM`指向虚拟机动态链接库中的 `JNI_CreateJavaVM` 函数，这个函数会真正创建虚拟机。 
+`ifn->CreateJavaVM`指向虚拟机动态链接库中的 `JNI_CreateJavaVM` 函数，这个函数会真正创建虚拟机。 这个函数执行后，pvm, penv 的值就会被设定，我们可以比较下执行前后它们的值，来看看它们的作用。
+
+```
+// before r = ifn->CreateJavaVM(pvm, (void **)penv, &args);
+
+(gdb) p *pvm
+$8 = (JavaVM *) 0x0
+(gdb) p *penv
+$9 = (JNIEnv *) 0x0
+
+```
+
+```
+// after r = ifn->CreateJavaVM(pvm, (void **)penv, &args);
+
+(gdb) p ***penv
+$14 = {reserved0 = 0x0, reserved1 = 0x0, reserved2 = 0x0, reserved3 = 0x0, 
+  GetVersion = 0xb6ede599 <jni_GetVersion>, 
+  DefineClass = 0xb6eb20a0 <jni_DefineClass>, 
+  FindClass = 0xb6eb253c <jni_FindClass>, 
+  FromReflectedMethod = 0xb6eb2b17 <jni_FromReflectedMethod>, 
+  FromReflectedField = 0xb6eb2edb <jni_FromReflectedField>, 
+  ...
+  ...
+  }
+  
+(gdb) p ***pvm
+$15 = {reserved0 = 0x0, reserved1 = 0x0, reserved2 = 0x0, 
+  DestroyJavaVM = 0xb6edf1e8 <jni_DestroyJavaVM>, 
+  AttachCurrentThread = 0xb6edf69a <jni_AttachCurrentThread>, 
+  DetachCurrentThread = 0xb6edf795 <jni_DetachCurrentThread>, 
+  GetEnv = 0xb6edf8d3 <jni_GetEnv>, 
+  AttachCurrentThreadAsDaemon = 0xb6edfa7d <jni_AttachCurrentThreadAsDaemon>}
+```
+
+可以看出它们得到了hotspot 中以 `jni_` 开头的一些函数，虚拟机正是以这样的方式向外提供功能。我们大概看一下`JNI_CreateJavaVM` 的功能。
 
 * JNI_CreateJavaVM(jdk8u\hotspot\src\share\vm\prims\jni.cpp)
 
@@ -390,7 +425,7 @@ _JNI_IMPORT_OR_EXPORT_ jint JNICALL JNI_CreateJavaVM(JavaVM **vm, void **penv, v
 }
 ```
 
-其中的 `create_vm` 函数是虚拟机初始化的关键，它初始化了虚拟机的大部分组件。
+其中的 `create_vm` 函数是虚拟机初始化的关键，它初始化了虚拟机的大部分组件。另外可以看到 vm, penv 的值被设定。
 
 
 我之前在 Windows 下调试，直接调试的 HotSpot 动态链接库，可以看到的第一个函数就是 `JNI_CreateJavaVM`, 之前的调用都位于 `java.exe` 代码中。因为 Windows 中 `java.exe` 不是我们自己编译的，看不到其中调用关系。如下图所示：
