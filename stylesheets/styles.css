@@ -98,7 +98,7 @@ header p.view small {
   font-weight: 400;
 }
 header ul {
-  margin: 0;
+  margin: 10px;
   padding: 0;
   list-style: none;
   position: absolute;
