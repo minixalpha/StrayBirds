@@ -1,6 +1,6 @@
 ---
 layout: default
-title: LeetCode:Divide Two Integers
+title: Divide Two Integers
 ---
 
 
