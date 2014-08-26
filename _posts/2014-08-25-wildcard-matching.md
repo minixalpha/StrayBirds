@@ -1,6 +1,6 @@
 ---
 layout: default
-title: LeetCode: Wildcard Matching 
+title: Wildcard Matching 
 ---
 
 ## 题目
