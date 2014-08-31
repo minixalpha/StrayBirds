@@ -17,7 +17,7 @@ the median of the two sorted arrays. The overall run time complexity should be O
 如果总数是偶数，中位数为第 `(la + lb) / 2` 个数与第 `(la + lb) / 2 + 1`  个数的平均值。
 
 
-```
+```python
 class Solution:
     def _findk(self, A,  B, k):
         if len(A) > len(B): return self._findk(B, A, k)
