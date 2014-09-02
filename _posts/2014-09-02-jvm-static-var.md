@@ -90,3 +90,18 @@ java_lang_Class::create_mirror(this_klass, protection_domain, CHECK_(nullHandle)
 }
 
 ```
+
+我们注意到， `create_mirror` 方法是在 `java_lang_Class` 类中。另外，我们还听过 Java 中的类都是 `java.lang.Class` 的实例，这
+二者之间是不是有什么关系呢？到 `create_mirror` 里我们可以看到
+
+```c++
+oop java_lang_Class::create_mirror(KlassHandle k, Handle protection_domain, TRAPS) {
+   ...
+    // Allocate mirror (java.lang.Class instance)
+    Handle mirror = InstanceMirrorKlass::cast(SystemDictionary::Class_klass())->allocate_instance(k, CHECK_0);
+    
+    ...
+    }
+```
+
+说明这个 mirror 确实是 `java.lang.Class` 的实例。另外，我们平时通过 `obj.getClass()` 得到的类，其实是通过 `obj->_klass->_java_mirror ` 得到的，参见 R 的另一篇 [博客](http://rednaxelafx.iteye.com/blog/1847971). 也就是说，直接暴露给 Java 的 是 java_mirror, 而不是 InstanceKlass.
