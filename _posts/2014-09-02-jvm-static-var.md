@@ -94,7 +94,7 @@ java_lang_Class::create_mirror(this_klass, protection_domain, CHECK_(nullHandle)
 我们注意到， `create_mirror` 方法是在 `java_lang_Class` 类中。另外，我们还听过 Java 中的类都是 `java.lang.Class` 的实例，这
 二者之间是不是有什么关系呢？到 `create_mirror` 里我们可以看到
 
-```c++
+```cpp
 oop java_lang_Class::create_mirror(KlassHandle k, Handle protection_domain, TRAPS) {
    ...
     // Allocate mirror (java.lang.Class instance)
@@ -146,7 +146,7 @@ field_info {
 
 我们来看一下这个函数，从中可以看到函数如何填充 `field_info`. 
 
-```cp
+```cpp
 // OpenJDK-Research\hotspot\src\share\vm\classfile\classFileParser.cpp
 
 Array<u2>* ClassFileParser::parse_fields(Symbol* class_name,
@@ -253,7 +253,7 @@ ClassFileParser::parseClassFile(
   其中的 `layout_fields` 会根据之前统计的各个类型的数目 `fac`，计算各种类型数据的偏移。
 
 
-```
+```cpp
 //
 
 void ClassFileParser::layout_fields(Handle class_loader,
