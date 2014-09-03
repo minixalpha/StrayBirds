@@ -209,5 +209,173 @@ Array<u2>* ClassFileParser::parse_fields(Symbol* class_name,
 
 ```
 
-先开辟数组空间 fa, 再从类文件中提取信息，然后将信息临时放在 `fa` 中，等解析完所有字段，将所有字段信息最终放在 `fields` 。
+先开辟数组空间 fa, 再从类文件中提取信息，然后将信息临时放在 `fa` 中的 `FieldInfo` 结构中，等解析完所有字段，将所有字段信息最终放在 `fields` 。另外，注意那句 `fac->update`，它会统计所有类型出现的次数。 
+
+我们看看`FieldInfo` 的 `initialize` 方法:
+
+```cpp
+  void initialize(u2 access_flags,
+                  u2 name_index,
+                  u2 signature_index,
+                  u2 initval_index) {
+    _shorts[access_flags_offset] = access_flags;
+    _shorts[name_index_offset] = name_index;
+    _shorts[signature_index_offset] = signature_index;
+    _shorts[initval_index_offset] = initval_index;
+    _shorts[low_packed_offset] = 0;
+    _shorts[high_packed_offset] = 0;
+  }
+```
+
+我们注意到这里并没有计算偏移，计算偏移还是在 `parseClassFile` 方法中：
+
+```cpp
+//OpenJDK-Research\hotspot\src\share\vm\classfile\classFileParser.cpp
+
+instanceKlassHandle 
+ClassFileParser::parseClassFile(
+  Symbol* name,
+  ClassLoaderData* loader_data,
+  Handle protection_domain,
+  KlassHandle host_klass,
+  GrowableArray<Handle>* cp_patches,
+  TempNewSymbol& parsed_name,
+  bool verify,
+  TRAPS) {
+  
+  
+  	// layout_fields 会为 fields 设置 offset
+    FieldLayoutInfo info;
+    layout_fields(class_loader, &fac, &parsed_annotations, &info, CHECK_NULL);
+  }
+  ```
+  
+  其中的 `layout_fields` 会根据之前统计的各个类型的数目 `fac`，计算各种类型数据的偏移。
+
+
+```
+//
+
+void ClassFileParser::layout_fields(Handle class_loader,
+                                    FieldAllocationCount* fac,
+                                    ClassAnnotationCollector* parsed_annotations,
+                                    FieldLayoutInfo* info,
+                                    TRAPS) {
+                                    
+                                    ...
+                                    
+  // Iterate over fields again and compute correct offsets.
+  // The field allocation type was temporarily stored in the offset slot.
+  // oop fields are located before non-oop fields (static and non-static).
+  for (AllFieldStream fs(_fields, _cp); !fs.done(); fs.next()) {
+
+    // skip already laid out fields
+    if (fs.is_offset_set()) continue;
+
+    // contended instance fields are handled below
+    if (fs.is_contended() && !fs.access_flags().is_static()) continue;
+
+    int real_offset;
+    FieldAllocationType atype = (FieldAllocationType) fs.allocation_type();
+
+    // pack the rest of the fields
+    switch (atype) {
+      case STATIC_OOP:
+        real_offset = next_static_oop_offset;
+        next_static_oop_offset += heapOopSize;
+        break;
+      case STATIC_BYTE:
+        real_offset = next_static_byte_offset;
+        next_static_byte_offset += 1;
+        break;
+      case STATIC_SHORT:
+        real_offset = next_static_short_offset;
+        next_static_short_offset += BytesPerShort;
+        break;
+      case STATIC_WORD:
+        real_offset = next_static_word_offset;
+        next_static_word_offset += BytesPerInt;
+        break;
+      case STATIC_DOUBLE:
+        real_offset = next_static_double_offset;
+        next_static_double_offset += BytesPerLong;
+        break;
+      
+      ...
+      
+      default:
+        ShouldNotReachHere();
+    }
+    fs.set_offset(real_offset);
+  }
+  
+  
+  ....
+  
+    // Pass back information needed for InstanceKlass creation
+  info->nonstatic_oop_offsets = nonstatic_oop_offsets;
+  info->nonstatic_oop_counts = nonstatic_oop_counts;
+  info->nonstatic_oop_map_count = nonstatic_oop_map_count;
+  info->total_oop_map_count = total_oop_map_count;
+  info->instance_size = instance_size;
+  info->static_field_size = static_field_size;
+  info->nonstatic_field_size = nonstatic_field_size;
+  info->has_nonstatic_fields = has_nonstatic_fields;
+}
+```
+
+其中的 `set_offset` 会真正设置 `FieldInfo` 中的偏移，我们一路跟踪过去，会发现调用`FieldInfo` 的 这个函数设置了偏移。
+
+
+```
+  void set_offset(u4 val)                        {
+    val = val << FIELDINFO_TAG_SIZE; // make room for tag
+    _shorts[low_packed_offset] = extract_low_short_from_int(val) | FIELDINFO_TAG_OFFSET;
+    _shorts[high_packed_offset] = extract_high_short_from_int(val);
+  }
+```
+
+其中的 `info` 会将偏移信息记录下来，在创建 `InstanceKlass` 的时候会用上。
+
+```cpp
+
+//OpenJDK-Research\hotspot\src\share\vm\classfile\classFileParser.cpp
+
+instanceKlassHandle 
+ClassFileParser::parseClassFile(
+  Symbol* name,
+  ClassLoaderData* loader_data,
+  Handle protection_domain,
+  KlassHandle host_klass,
+  GrowableArray<Handle>* cp_patches,
+  TempNewSymbol& parsed_name,
+  bool verify,
+  TRAPS) {
+    ...
+
+    // We can now create the basic Klass* for this klass
+    _klass = InstanceKlass::allocate_instance_klass(loader_data,
+                                                    vtable_size,
+                                                    itable_size,
+                                                    info.static_field_size,
+                                                    total_oop_map_size2,
+                                                    rt,
+                                                    access_flags,
+                                                    name,
+                                                    super_klass(),
+                                                    !host_klass.is_null(),
+                                                    CHECK_(nullHandle));
+  ...
+  
+```
+
+注意 `info.static_field_size` 会被传进去，用于分配空间。
+
+然后，再看看 `mirror` 的创建。
+
+```cpp
+    // Allocate mirror and initialize static fields
+    java_lang_Class::create_mirror(this_klass, protection_domain, CHECK_(nullHandle));
+```
+  
 
