@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Java 虚拟机如何访问类的静态变量
+title: Java 虚拟机内部类静态字段的初始化与访问
 ---
 
 
