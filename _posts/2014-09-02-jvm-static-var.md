@@ -378,4 +378,73 @@ ClassFileParser::parseClassFile(
     java_lang_Class::create_mirror(this_klass, protection_domain, CHECK_(nullHandle));
 ```
   
+其内部会首先为 mirror 分配空间：
 
+```cpp
+oop java_lang_Class::create_mirror(KlassHandle k, Handle protection_domain, TRAPS) {
+Handle mirror = InstanceMirrorKlass::cast(SystemDictionary::Class_klass())->allocate_instance(k, CHECK_0);
+
+// Initialize static fields
+InstanceKlass::cast(k())->do_local_static_fields(&initialize_static_field, CHECK_NULL);
+      
+      
+return mirror();
+```
+
+注意 `allocate_instance` 内部会根据 k 中的信息，计算需要分配的空间，包含静态变量的大小。然后对 mirror 的空间进行分配。
+
+之后， `do_local_static_fields` 会对静态字段进行初始化。 注意此是传入的函数指针表示的 `initialize_static_field` 函数，
+`do_local_static_fields` 会在内部遍历所有静态字段，然后调用这个函数对他们进行初始化。
+
+
+```cpp
+static void initialize_static_field(fieldDescriptor* fd, TRAPS) {
+  Handle mirror (THREAD, fd->field_holder()->java_mirror());
+  assert(mirror.not_null() && fd->is_static(), "just checking");
+  if (fd->has_initial_value()) {
+    BasicType t = fd->field_type();
+	int offset = fd->offset();
+    switch (t) {
+      case T_BYTE:
+        mirror()->byte_field_put(fd->offset(), fd->int_initial_value());
+              break;
+      case T_BOOLEAN:
+        mirror()->bool_field_put(fd->offset(), fd->int_initial_value());
+              break;
+      case T_CHAR:
+        mirror()->char_field_put(fd->offset(), fd->int_initial_value());
+              break;
+      case T_SHORT:
+        mirror()->short_field_put(fd->offset(), fd->int_initial_value());
+              break;
+      case T_INT:
+        mirror()->int_field_put(fd->offset(), fd->int_initial_value());
+        break;
+      case T_FLOAT:
+        mirror()->float_field_put(fd->offset(), fd->float_initial_value());
+        break;
+      case T_DOUBLE:
+        mirror()->double_field_put(fd->offset(), fd->double_initial_value());
+        break;
+      case T_LONG:
+        mirror()->long_field_put(fd->offset(), fd->long_initial_value());
+        break;
+      case T_OBJECT:
+        {
+          #ifdef ASSERT
+          TempNewSymbol sym = SymbolTable::new_symbol("Ljava/lang/String;", CHECK);
+          assert(fd->signature() == sym, "just checking");
+          #endif
+          oop string = fd->string_initial_value(CHECK);
+          mirror()->obj_field_put(fd->offset(), string);
+        }
+        break;
+      default:
+        THROW_MSG(vmSymbols::java_lang_ClassFormatError(),
+                  "Illegal ConstantValue attribute in class file");
+    }
+  }
+}
+```
+
+这里会根据类型的不同分别进行初始化。
