@@ -125,7 +125,7 @@ oop java_lang_Class::create_mirror(KlassHandle k, Handle protection_domain, TRAP
 
 ```
 这个函数用于读取字段信息，计算出域大小与偏移量，并根据域分配策略对
-字段存储进行分配。这些信息会在后续步骤填入 instanceKlass  对象中成为类信息的一部分。
+字段存储顺序进行分配。这些信息会在后续步骤填入 instanceKlass  对象中成为类信息的一部分。
 ```
 
 根据 Java 虚拟机规范 中的说明，字段(field) 由下列数据结构表示：
@@ -448,3 +448,202 @@ static void initialize_static_field(fieldDescriptor* fd, TRAPS) {
 ```
 
 这里会根据类型的不同分别进行初始化。
+
+我们看看 `int_field_put` 内部做些什么。
+
+```
+inline void oopDesc::int_field_put(int offset, jint contents)       { *int_field_addr(offset) = contents;    }
+```
+
+```
+inline jint*     oopDesc::int_field_addr(int offset)    const { return (jint*)    field_base(offset); }
+```
+
+```
+inline void*     oopDesc::field_base(int offset)        const { return (void*)&((char*)this)[offset]; }
+```
+
+可以看到，存储位置最终放在 mirror 对象偏移为 offset 处，这个 offset 就是之前对 field 设置的 offset. 
+
+到这里，我们已经知道这些静态变量存储在哪里了。
+
+## 如何访问这些静态变量
+
+根据刚才的分析过程，我们也看到静态变量存储在哪里了，通过什么函数可以访问到他们，可以做一个实验，打印出所有静态变量的值, 看看如何访问这些静态变量。 我之前写过文章，通过 JVMTI 写一个 agent ，每次执行一条字节码之前，就跳到我们自己定义的一个函数中
+执行。在我们自己定义的函数中，可以调用虚拟机提供的接口，访问一些数据。在这次实验中，我修改了其中一个函数的内部实现，使得
+我们的 agent 调用这个函数的外部接口时，内部可以打印出所有整数类型静态变量的值。
+
+我测试用的 Java 程序是一个多线程程序
+
+```java
+import java.lang.Thread;
+
+public class PossibleReordering {
+	static int x = 0, y = 0;
+	static int a = 0, b = 0;
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		Thread one = new Thread(new Runnable() {
+			public void run() {
+                		a = 19;
+                		x = b;
+			}
+		});
+		
+		Thread other = new Thread(new Runnable() {
+			
+			public void run() {
+                		b = 18;
+                		y = a;
+                		a = 20;
+                		x = b;
+                		a = 49;
+                		x = b;
+                		a = 29;
+                		x = b;
+                		a = 16;
+                		x = b;
+                		a = 17;
+                		x = b;
+                		a = 155;
+                		x = b;
+                		a = 321;
+                		x = b;
+			}
+		});
+		
+		one.start();
+		other.start();
+		one.join();
+		other.join();
+        System.out.println("end");
+	}
+}
+```
+
+Agent 中开启单步执行，并设置回调函数。
+
+```c
+   /* add capabilities */
+    memset(&capa, 0, sizeof(jvmtiCapabilities));
+    capa.can_generate_single_step_events = 1;
+    
+   /* add callbacks */
+    memset(&callbacks, 0, sizeof(callbacks));
+    callbacks.SingleStep = &callbackSingleStep;
+```
+
+
+回调函数会在每次执行一条字节码前被调用。回调函数中调用一个 `GetMethodLocation` 函数，
+
+```c
+        error = (*jvmti)->GetMethodLocation( \
+                jvmti, method, &s_location, &e_location)
+```                
+
+同时在虚拟机内部改写了 `GetMethodLocation` 的内部对应函数。
+
+
+```cpp
+// method_oop - pre-checked for validity, but may be NULL meaning obsolete method
+// start_location_ptr - pre-checked for NULL
+// end_location_ptr - pre-checked for NULL
+jvmtiError
+	JvmtiEnv::GetMethodLocation(Method* method_oop, jlocation* start_location_ptr, jlocation* end_location_ptr) {
+
+		NULL_CHECK(method_oop, JVMTI_ERROR_INVALID_METHODID);
+		// get start and end location
+		(*end_location_ptr) = (jlocation) (method_oop->code_size() - 1);
+		if (method_oop->code_size() == 0) {
+			// there is no code so there is no start location
+			(*start_location_ptr) = (jlocation)(-1);
+		} else {
+			(*start_location_ptr) = (jlocation)(0);
+		}
+
+		InstanceKlass *klass = method_oop->method_holder();
+		oop jmirror = klass->java_mirror();
+		int fields_count = klass->java_fields_count();
+		Array<u2> * fields = klass->fields();
+	
+		instanceKlassHandle handle(klass);
+		jclass declaring_class;
+		char *class_signature;
+		this->GetMethodDeclaringClass(method_oop, &declaring_class); 
+		this->GetClassSignature(jmirror, &class_signature, NULL);
+
+		if (strstr(class_signature, "Possible") != NULL) {
+			for (JavaFieldStream fs(handle()); !fs.done(); fs.next()) {
+				if (fs.access_flags().is_static()) {
+					fieldDescriptor& fd = fs.field_descriptor();
+					if (fd.field_type() == T_INT) {
+						int offset = fd.offset();
+						int int_field = jmirror->int_field(offset);
+						if (int_field != 0) {
+							printf("%s %d, %d\n", fd.name()->as_C_string(), offset, int_field);
+						}
+						if (strstr(fd.name()->as_C_string(), "x") != NULL) {
+							printf ("%s %d\n", fd.name()->as_C_string(), offset);
+						}
+					}
+				}
+			}
+		}
+
+		return JVMTI_ERROR_NONE;
+} /* end GetMethodLocation */
+```
+
+从中可以看出，如何获取当前类的名字，如何遍历当前所有字段，如何获取字段名。如何根据偏移值获取字段值。 另外，我将 
+在 `layout_fields` 函数内部也捕获这个类所有静态整数类型的偏移，看看初始化偏移时的值与实际访问时
+的偏移值是不是同一个值，经过验证，确实是这样。
+
+```cpp
+// layout_fields 内部插入的代码
+	if (strstr(this->_class_name->as_C_string(), "Possible") != NULL) {
+		if (atype == STATIC_WORD) {
+			printf("init: name(%s) offset(%d)\n", fs.name()->as_C_string(), real_offset);
+		}
+	}
+```
+
+执行之后，虚拟机会打印出相关的字段信息。
+
+```
+PossibleReordering
+init: name(x) offset(80)
+init: name(y) offset(84)
+init: name(a) offset(88)
+init: name(b) offset(92)
+
+visit: a 88, 19
+visit: a 88, 19
+
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 49
+visit: b 92, 18
+
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 49
+visit: b 92, 18
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 321
+visit: b 92, 18
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 321
+visit: b 92, 18
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 321
+visit: b 92, 18
+end
+visit: x 80, 18
+visit: y 84, 19
+visit: a 88, 321
+visit: b 92, 18
+```
