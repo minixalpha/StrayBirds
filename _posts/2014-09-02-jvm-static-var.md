@@ -581,10 +581,7 @@ jvmtiError
 						int offset = fd.offset();
 						int int_field = jmirror->int_field(offset);
 						if (int_field != 0) {
-							printf("%s %d, %d\n", fd.name()->as_C_string(), offset, int_field);
-						}
-						if (strstr(fd.name()->as_C_string(), "x") != NULL) {
-							printf ("%s %d\n", fd.name()->as_C_string(), offset);
+							printf("visit: %s %d, %d\n", fd.name()->as_C_string(), offset, int_field);
 						}
 					}
 				}
@@ -647,3 +644,5 @@ visit: y 84, 19
 visit: a 88, 321
 visit: b 92, 18
 ```
+
+注意初始化各个字段偏移时的偏移值与实际访问时的偏移值是一致的，另外，想一下 a 的值为 155 为什么没打印出来？
