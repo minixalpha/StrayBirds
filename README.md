@@ -1,7 +1,7 @@
 StrayBirds
 ==========
 
-An Clean Blog, write something on GitHub, no git, no make.
+A Clean Blog, write something directly on GitHub, no git, no make.
 
 Visit Website on [StrayBirds](http://minixalpha.github.io/StrayBirds/)
 
