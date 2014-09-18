@@ -1,7 +1,9 @@
 ---
 layout: default
-title: Java中为什么不允许有泛型数组
+title: Java中为什么不允许直接创建泛型数组
 ---
+
+## 失败的方式 
 
 在Java中，如果使用泛型数组，会出现编译错误, 例如 
 
@@ -43,3 +45,14 @@ objects[0] = intList
 ```java
 String str = stringList[0].get(0);
 ```
+
+## 成功的方式
+
+我们可以通过，先擦除类型，再强制转化的方式创建一个泛型数组。
+
+```java
+List<String>[] stringLists = (List<String>[])new List[10];
+```
+
+不过，随后你会发现，之前说的所有事情对这个通过编译的语句依然成立，你可以通过数组协变去掉泛型数组的类型，再给它添加一个不同类型
+的数据，然后再访问这个数据。
