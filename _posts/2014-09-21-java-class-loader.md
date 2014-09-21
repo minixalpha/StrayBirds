@@ -19,6 +19,49 @@ java HelloWorld
 4. Bootstrap Loader 加载 AppClass Loader (系统加载器), 并将其父加载器设置为 Extended Loader
 5. AppClass Loader 加载 CLASSPATH 目录下的 HelloWorld 类
 
+
+我们可以在调试版本的虚拟机中开启 ' -XX:+TraceClassLoading -XX:+TraceClassLoadingPreorder -XX:+Verbose' ，然后就可以看到我们平时喜闻乐见的一些类的加载过程了。
+
+```
+[Bootstrap loader class path=d:\jdk8\jre\lib\resources.jar;d:\jdk8\jre\lib\rt.ja
+r;d:\jdk8\jre\lib\sunrsasign.jar;d:\jdk8\jre\lib\jsse.jar;d:\jdk8\jre\lib\jce.ja
+r;d:\jdk8\jre\lib\charsets.jar;d:\jdk8\jre\lib\jfr.jar;d:\jdk8\jre\classes]
+[Meta index for d:\jdk8\jre\lib\charsets.jar=sun/nio sun/awt]
+[Meta index for d:\jdk8\jre\lib\jce.jar=javax/crypto sun/security META-INF/ORACL
+E_J.RSA META-INF/ORACLE_J.SF]
+[Meta index for d:\jdk8\jre\lib\jfr.jar=oracle/jrockit/ jdk/jfr com/oracle/jrock
+it/]
+[Meta index for d:\jdk8\jre\lib\jsse.jar=sun/security com/sun/net/]
+[Meta index for d:\jdk8\jre\lib\rt.jar=com/sun/java/util/jar/pack/ java/ org/iet
+f/ com/sun/beans/ com/sun/tracing/ com/sun/java/browser/ com/sun/corba/ com/sun/
+media/ com/sun/awt/ com/sun/management/ sun/ com/sun/jmx/ com/sun/demo/ com/sun/
+imageio/ com/sun/net/ com/sun/rmi/ org/w3c/ com/sun/swing/ com/sun/activation/ c
+om/sun/nio/ com/sun/rowset/ org/jcp/ com/sun/istack/ jdk/ com/sun/naming/ org/xm
+l/ org/omg/ com/sun/security/ com/sun/image/ com/sun/xml/ com/sun/java/swing/ co
+m/oracle/ com/sun/java_cup/ com/sun/jndi/ com/sun/accessibility/ com/sun/org/ ja
+vax/]
+[Opened d:\jdk8\jre\lib\rt.jar]
+[Loading java.lang.Object from d:\jdk8\jre\lib\rt.jar]
+[Loaded java.lang.Object from d:\jdk8\jre\lib\rt.jar]
+[Loading java.lang.String from d:\jdk8\jre\lib\rt.jar]
+
+...
+
+[Loading sun.misc.Launcher$ExtClassLoader from d:\jdk8\jre\lib\rt.jar]
+[Loaded sun.misc.Launcher$ExtClassLoader from d:\jdk8\jre\lib\rt.jar]
+
+...
+
+[Loading sun.misc.Launcher$AppClassLoader from d:\jdk8\jre\lib\rt.jar]
+[Loaded sun.misc.Launcher$AppClassLoader from d:\jdk8\jre\lib\rt.jar]
+
+...
+
+[Loading HelloWorld from file:/D:/HotSpotResearch/testcase/]
+```
+
+但是，我没有从中发现 lib\ext 目录下的扩展类被加载的过程。
+
 ## 双亲委派机制
 
 双亲委派机制的基本思想是，一个类加载器加载类时，首先委派给父加载器去加载，只有父加载器无法加载时，才自己去加载。
