@@ -14,8 +14,8 @@ java HelloWorld
 基本的过程
 
 1. 查找 jvm.dll ，初始化 JVM
-2. 产生 Bootstrap Loader (启动类加载器)，并加载 JAVA_HOME/lib 下的Java核心API
-3. Bootstrap Loader 加载 Extended Loader (标准扩展类加载器), Extended Loader 加载 JAVA_HOME/lib/ext 下的扩展类
+2. 产生 Bootstrap Loader (启动类加载器)，并加载 JAVA_HOME/jre/lib 下的Java核心API类，都在 rt.jar 里。
+3. Bootstrap Loader 加载 Extended Loader (标准扩展类加载器), Extended Loader 加载 JAVA_HOME/jre/lib/ext 下的扩展类
 4. Bootstrap Loader 加载 AppClass Loader (系统加载器), 并将其父加载器设置为 Extended Loader
 5. AppClass Loader 加载 CLASSPATH 目录下的 HelloWorld 类
 
