@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Android 中的进程
-----
+title: Android中的进程
+---
 
 Android 运行在 Linux 上，Android 系统会为每个 App 创建一个 Linux 账号，并通过这个账号启动一个进程，这个进程运行一个 Dalvik 虚拟机，
 每个 App 都运行在一个单独的 Dalvik 虚拟机内。
