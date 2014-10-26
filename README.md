@@ -8,7 +8,7 @@ StrayBirds
 可以通过访问 [StrayBirds](http://minixalpha.github.io/StrayBirds/) 看到最终
 的效果，下面是截图:
 
-![ui-demo](ui-demo.png)
+![ui-demo](/images/ui-demo.png)
 
 ## 教程
 
