@@ -20,16 +20,22 @@ StrayBirds
 3. 到你 Fork 后的项目中，将 `_config.yml` 中的 username 修改为你的用户名 minixbeta
 4. 访问你的博客 http://minixbeta.github.io/StrayBirds/
 
+![create_project](/images/create_project.gif)
+
 如果你想修改项目的名字，例如将 StrayBirds 修改为 blog，那么你需要做的是
 
 1. 在项目的 Setting 中将 Repository name 从 StrayBirds 修改为 blog
 2. 将 `_config.yml` 中的 baseurl 修改为 /blog
 3. 通过 http://minixbeta.github.io/blog/ 来访问你的新博客
 
+![create_post](/images/change_project_name.gif)
+
 ### 添加文章
 
 在 `_post` 目录下添加形如 `2014-10-26-title.md` 的文章，用 markdown 格式
 撰写博客。
+
+![create_post](/images/create_post.gif)
 
 ## 感谢
 
