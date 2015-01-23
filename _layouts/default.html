@@ -30,6 +30,12 @@
         </h1>
 {{ content }}
       </section>
+      
+      <section class="comments">
+        {% if page.comments %}
+          {% include comments.ext %}
+        {% endif %}
+      </section>
     </div>
     <footer>
       <p>Project maintained by <a href="https://github.com/{{site.username}}">{{site.username}}</a></p>
