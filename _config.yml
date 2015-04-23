@@ -2,5 +2,11 @@ username: minixalpha
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
-pygments: true
+highlighter: pygments
 title: 飞鸟集
+description: 人生到处知何似，应似飞鸿踏雪泥
+theme: modernist
+disqusname: minixalpha
+
+# theme can be: hack, leep-day, merlot, midnight, minimal, modernist, slate, time-machine
+# those themes are all come from GitHub Pages Themes

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{{site.title}}</title>
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/styles.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="{{site.baseurl}}/themes/{{site.theme}}/javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1><a href="{{site.baseurl}}/">{{site.title}}</a></h1>
+        <p>{{site.description}}</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages" class="button fork"><strong>Fork On GitHub</strong></a>
+       <!--  <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/dewski/json_builder/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/dewski/json_builder/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div> -->
+
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+{{content}}
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/{{site.username}}">{{site.username}}</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/mattgraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>

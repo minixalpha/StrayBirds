@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css" media="screen" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/print.css" media="print" /> -->
+
+    <title>{{site.title}}</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>
+          <a href="{{site.baseurl}}/">{{site.title}}</a>
+          <span id="downloads">
+            <a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+          </span>
+        </h1>
+        <h2>{{site.description}}</h2>
+
+        
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+{{ content }}
+      </section>
+      
+      <section id="comments">
+        {% if page.comments %}
+          {% include comments.ext %}
+        {% endif %}
+      </section>
+      
+    <footer>
+      <p>Project maintained by <a href="https://github.com/{{site.username}}">{{site.username}}</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme of <a href="https://github.com/sundaykofax/baby-legs/tree/gh-pages">baby-legs</a></p>
+    </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{{page.title}}</title>
+    
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/styles.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{site.baseurl}}/">{{site.title}}</a></h1>
+        <p>{{site.description}}</p>
+        <p class="view"><a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages">View the Project on GitHub <small>{{site.username}}/{{site.baseurl}}</small></a></p>
+        <ul>
+        <!--   <li><a href="https://github.com/orderedlist/minimal/zipballmus/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/orderedlist/minimal/tarball/master">Download <strong>TAR Ball</strong></a></li> -->
+          <li><a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>{{page.title}}</h1>
+{{content}}      
+      </section>
+      <section class="comments">
+        {% if page.comments %}
+          {% include comments.ext %}
+        {% endif %}
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="http://github.com/orderedlist">Steve Smith</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="{{site.baseurl}}/themes/{{site.theme}}/javascripts/scale.fix.js"></script>
+  </body>
+</html>

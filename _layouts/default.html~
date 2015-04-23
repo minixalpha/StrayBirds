@@ -1,0 +1,2 @@
+{% assign theme = site.theme %} 
+{% include {{theme}}.ext %}

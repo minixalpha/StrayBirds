@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{site.baseurl}}/themes/{{site.theme}}/javascripts/script.js"></script>
+
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{site.username}}'s blog based on GitHub Pages">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title"><a href="{{site.baseurl}}/">{{site.title}}</a></h1>
+    </header>
+    <div id="container">
+      <p class="tagline">{{page.title}}</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+        <!--   <a href="https://github.com/jonrohan/time-machine-theme/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/jonrohan/time-machine-theme/zipball/master" class="download-button zip"><span>Download</span></a> -->
+          <a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages" class="code">View the project on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+{{content}}
+        </article>
+      </div>
+    </div>
+
+    <div id="comments">
+        {% if page.comments %}
+          {% include comments.ext %}
+        {% endif %}
+    </div>
+
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/jonrohan" class="avatar">{{site.username}}</a> maintains <a href="https://github.com/{{site.username}}/{{site.baseurl}}/tree/gh-pages">this blog</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+   <!--  <a href="https://github.com/jonrohan/time-machine-theme/tarball/master" class="tar">tar</a><a href="https://github.com/jonrohan/time-machine-theme/zipball/master" class="zip">zip</a><a href="" class="code">source code</a> -->
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>

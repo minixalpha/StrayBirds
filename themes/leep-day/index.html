@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>JSONBuilder by dewski</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>JSONBuilder</h1>
+        <p>JSONBuilder is to JSON as Builder is to XML</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/dewski/json_builder" class="button fork"><strong>Fork On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/dewski/json_builder/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/dewski/json_builder/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h2>Installation</h2>
+
+<p>Add the following line to your application's Gemfile:</p>
+
+<pre><code>gem 'json_builder'
+</code></pre>
+
+<p>And then run:</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>Or install it yourself with:</p>
+
+<pre><code>$ gem install json_builder
+</code></pre>
+
+<h2>Sample Usage</h2>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'json_builder'</span>
+
+<span class="n">json</span> <span class="o">=</span> <span class="no">JSONBuilder</span><span class="o">::</span><span class="no">Compiler</span><span class="o">.</span><span class="n">generate</span> <span class="k">do</span>
+  <span class="nb">name</span> <span class="s1">'Garrett Bjerkhoel'</span>
+  <span class="n">email</span> <span class="s1">'spam@garrettbjerkhoel.com'</span>
+  <span class="n">url</span> <span class="n">root_path</span>
+  <span class="n">address</span> <span class="k">do</span>
+    <span class="n">street</span> <span class="s1">'1234 1st Ave'</span>
+    <span class="n">street2</span> <span class="s1">'Apt 1'</span>
+    <span class="n">city</span> <span class="s1">'New York'</span>
+    <span class="n">state</span> <span class="s1">'NY'</span>
+    <span class="n">zip</span> <span class="mi">10065</span>
+  <span class="k">end</span>
+  <span class="n">key</span> <span class="ss">:nil</span><span class="p">,</span> <span class="s1">'testing a custom key name'</span>
+  <span class="n">skills</span> <span class="k">do</span>
+    <span class="n">ruby</span> <span class="kp">true</span>
+    <span class="n">asp</span> <span class="kp">false</span>
+  <span class="k">end</span>
+  <span class="n">longstring</span> <span class="k">do</span>
+    <span class="c1"># Could be a highly intensive process that only returns a string</span>
+    <span class="s1">'12345'</span> <span class="o">*</span> <span class="mi">25</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>Which will generate:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+  <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Garrett Bjerkhoel"</span><span class="p">,</span>
+  <span class="nt">"email"</span><span class="p">:</span> <span class="s2">"spam@garrettbjerkhoel.com"</span><span class="p">,</span>
+  <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"/"</span><span class="p">,</span>
+  <span class="nt">"address"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"street"</span><span class="p">:</span> <span class="s2">"1234 1st Ave"</span><span class="p">,</span>
+    <span class="nt">"street2"</span><span class="p">:</span> <span class="s2">"Apt 1"</span><span class="p">,</span>
+    <span class="nt">"city"</span><span class="p">:</span> <span class="s2">"New York"</span><span class="p">,</span>
+    <span class="nt">"state"</span><span class="p">:</span> <span class="s2">"NY"</span><span class="p">,</span>
+    <span class="nt">"zip"</span><span class="p">:</span> <span class="mi">10065</span>
+  <span class="p">},</span>
+  <span class="nt">"nil"</span><span class="p">:</span> <span class="s2">"testing a custom key name"</span><span class="p">,</span>
+  <span class="nt">"skills"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"ruby"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">"asp"</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">},</span>
+  <span class="nt">"longstring"</span><span class="p">:</span> <span class="s2">"1234512345123451234512345..."</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>If you'd like to just generate an array:</p>
+
+<div class="highlight">
+<pre><span class="n">array</span> <span class="o">[</span><span class="s1">'Garrett Bjerkhoel'</span><span class="p">,</span> <span class="s1">'John Doe'</span><span class="o">]</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+  <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="nb">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+  <span class="n">first</span> <span class="n">first</span>
+  <span class="n">last</span> <span class="n">last</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>Which will return:</p>
+
+<div class="highlight">
+<pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">"first"</span><span class="p">:</span> <span class="s2">"Garrett"</span><span class="p">,</span>
+    <span class="nt">"last"</span><span class="p">:</span> <span class="s2">"Bjerkhoel"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">"first"</span><span class="p">:</span> <span class="s2">"John"</span><span class="p">,</span>
+    <span class="nt">"last"</span><span class="p">:</span> <span class="s2">"Doe"</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre>
+</div>
+
+
+<p>Just a note, if you use an array block as above, all other sibling method calls will be ignored.</p>
+
+<h2>Using JSONBuilder with Rails</h2>
+
+<p>To use JSONBuilder with your Rails application, make sure your controller responds to <code>json</code>:</p>
+
+<div class="highlight">
+<pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">respond_to</span> <span class="ss">:json</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s1">'id DESC'</span><span class="p">)</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">per</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">respond_with</span> <span class="vi">@users</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>Then create your view <code>app/views/users/index.json.json_builder</code> which could look something like:</p>
+
+<div class="highlight">
+<pre><span class="n">count</span> <span class="vi">@users</span><span class="o">.</span><span class="n">count</span>
+<span class="n">page</span> <span class="vi">@users</span><span class="o">.</span><span class="n">current_page</span>
+<span class="n">per_page</span> <span class="vi">@users</span><span class="o">.</span><span class="n">per_page</span>
+<span class="n">pages_count</span> <span class="vi">@users</span><span class="o">.</span><span class="n">num_pages</span>
+<span class="n">results</span> <span class="vi">@users</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+  <span class="nb">id</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span>
+  <span class="nb">name</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span>
+  <span class="n">body</span> <span class="n">user</span><span class="o">.</span><span class="n">body</span>
+  <span class="n">url</span> <span class="n">user_url</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="n">links</span> <span class="n">user</span><span class="o">.</span><span class="n">links</span> <span class="k">do</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span>
+    <span class="n">url</span> <span class="n">link</span><span class="o">.</span><span class="n">url</span>
+    <span class="n">visits</span> <span class="n">link</span><span class="o">.</span><span class="n">visits</span>
+    <span class="n">last_visited</span> <span class="n">link</span><span class="o">.</span><span class="n">last_visited</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>The response that is returned:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+  <span class="nt">"count"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="nt">"page"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">"per_page"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="nt">"pages_count"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="nt">"results"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Garrett Bjerkhoel"</span><span class="p">,</span>
+      <span class="nt">"body"</span><span class="p">:</span> <span class="s2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."</span><span class="p">,</span>
+      <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://example.com/users/garrett-bjerkhoel">http://example.com/users/garrett-bjerkhoel</a>"</span><span class="p">,</span>
+      <span class="nt">"links"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://github.com/">http://github.com/</a>"</span><span class="p">,</span>
+          <span class="nt">"visits"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+          <span class="nt">"last_visited"</span><span class="p">:</span> <span class="s2">"2011-11-271T00:00:01Z"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://garrettbjerkhoel.com/">http://garrettbjerkhoel.com/</a>"</span><span class="p">,</span>
+          <span class="nt">"visits"</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span>
+          <span class="nt">"last_visited"</span><span class="p">:</span> <span class="s2">"2011-11-261T00:00:01Z"</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nt">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"John Doe"</span><span class="p">,</span>
+      <span class="nt">"body"</span><span class="p">:</span> <span class="s2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."</span><span class="p">,</span>
+      <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://example.com/users/john-doe">http://example.com/users/john-doe</a>"</span><span class="p">,</span>
+      <span class="nt">"links"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://google.com/">http://google.com/</a>"</span><span class="p">,</span>
+          <span class="nt">"visits"</span><span class="p">:</span> <span class="mi">11000</span><span class="p">,</span>
+          <span class="nt">"last_visited"</span><span class="p">:</span> <span class="s2">"2010-05-221T00:00:01Z"</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">"url"</span><span class="p">:</span> <span class="s2">"<a href="http://twitter.com/">http://twitter.com/</a>"</span><span class="p">,</span>
+          <span class="nt">"visits"</span><span class="p">:</span> <span class="mi">155012857</span><span class="p">,</span>
+          <span class="nt">"last_visited"</span><span class="p">:</span> <span class="s2">"2011-11-261T00:00:01Z"</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h3>Including JSONP callbacks</h3>
+
+<p>Out of the box JSONBuilder supports JSONP callbacks when used within a Rails project just by using the <code>callback</code> parameter. For instance, if you requested <code>/users.json?callback=myjscallback</code>, you'll get a callback wrapping the response:</p>
+
+<div class="highlight">
+<pre><span class="err">myjscallback(</span><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Garrett Bjerkhoel"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"John Doe"</span>
+  <span class="p">}</span>
+<span class="p">]</span><span class="err">)</span>
+</pre>
+</div>
+
+
+<p>To turn off JSONP callbacks globally or just per-environment:</p>
+
+<h4>Globally</h4>
+
+<div class="highlight">
+<pre><span class="no">ActionView</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">json_callback</span> <span class="o">=</span> <span class="kp">false</span>
+</pre>
+</div>
+
+
+<h4>Per Environment</h4>
+
+<div class="highlight">
+<pre><span class="no">Sample</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_view</span><span class="o">.</span><span class="n">json_callback</span> <span class="o">=</span> <span class="kp">false</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<h3>Pretty Print Output</h3>
+
+<p>Out of the box JSONBuilder supports pretty printing only during development, it's disabled by default in other environments for performance. If you'd like to enable or disable pretty printing you can do it within your environment file or you can do it globally.</p>
+
+<p>With pretty print on:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+  <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Garrett Bjerkhoel"</span><span class="p">,</span>
+  <span class="nt">"email"</span><span class="p">:</span> <span class="s2">"spam@garrettbjerkhoel.com"</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>Without:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span> <span class="s2">"Garrett Bjerkhoel"</span><span class="p">,</span> <span class="nt">"email"</span><span class="p">:</span> <span class="s2">"spam@garrettbjerkhoel.com"</span><span class="p">}</span>
+</pre>
+</div>
+
+
+<h4>Per Environment</h4>
+
+<div class="highlight">
+<pre><span class="no">Sample</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">action_view</span><span class="o">.</span><span class="n">pretty_print_json</span> <span class="o">=</span> <span class="kp">false</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<h4>Globally</h4>
+
+<div class="highlight">
+<pre><span class="no">ActionView</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">pretty_print_json</span> <span class="o">=</span> <span class="kp">false</span>
+</pre>
+</div>
+
+
+<h2>Speed</h2>
+
+<p>JSONBuilder is very fast, it's roughly 3.6 times faster than Builder based on the <a href="https://github.com/dewski/json_builder/blob/master/spec/benchmarks/builder.rb">speed benchmark</a>.</p>
+
+<pre><code>             user       system      total       real
+JSONBuilder  2.950000   0.010000    2.960000    (2.968790)
+    Builder  10.820000  0.040000    10.860000   (10.930497)
+</code></pre>
+
+<h2>Alternative libraries</h2>
+
+<p>There are alternatives to JSONBuilder, each good in their own way with different API's and design approaches that are worth checking out. Although, I would love to hear why JSONBuilder didn't fit your needs, by message or issue.</p>
+
+<ul>
+<li><a href="https://github.com/rails/jbuilder">jbuilder</a></li>
+<li><a href="https://github.com/nesquena/rabl">RABL</a></li>
+<li><a href="https://github.com/inem/tequila">Tequila</a></li>
+<li><a href="https://github.com/jbr/argonaut">Argonaut</a></li>
+<li><a href="https://github.com/bsiggelkow/jsonify">Jsonify</a></li>
+<li><a href="https://github.com/mdub/representative_view">RepresentationView</a></li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright © 2012 Garrett Bjerkhoel. See <a href="http://github.com/dewski/json_builder/blob/master/MIT-LICENSE">MIT-LICENSE</a> for details.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/dewski">dewski</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/mattgraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
