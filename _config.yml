@@ -5,7 +5,7 @@ safe: false
 highlighter: pygments
 title: 飞鸟集
 description: 人生到处知何似，应似飞鸿踏雪泥
-theme: modernist
+theme: leep-day
 disqusname: minixalpha
 
 # theme can be: hack, leep-day, merlot, midnight, minimal, modernist, slate, time-machine
