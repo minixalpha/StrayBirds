@@ -22,6 +22,8 @@ StrayBirds
 
 ![create_project](/images/create_project.gif)
 
+** 注意如果你是第一次使用 GitHub Pages，可能不会马上生效，等一段时间即可 **
+
 ### 配置
 
 * 修改项目名
@@ -54,6 +56,8 @@ StrayBirds
 	![slate-demo](/images/slate-demo.png)
 - time-machine
 	![time-machine-demo](/images/time-machine-demo.png) 
+
+** 注意修改主题后，并不会马上生效，GitHub 还要反应一段时间，所以请耐心等待 **
 
 * 修改评论系统用户名
 
