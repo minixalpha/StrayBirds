@@ -43,7 +43,7 @@ StrayBirds
 Thanks to authors of the themes:
 
 * [hack](https://github.com/sundaykofax/baby-legs), Licence: None
-* [leep-day](https://github.com/mattgraham/leapday), Licence: [Creative Commons Attribution](http://creativecommons.org/licenses/by/3.0/)
+* [leap-day](https://github.com/mattgraham/leapday), Licence: [Creative Commons Attribution](http://creativecommons.org/licenses/by/3.0/)
 * [merlot](https://github.com/cameronmcefee/headsmart/tree/gh-pages), Licence: None
 * [midnight](https://github.com/briandoll/change-inside-surroundings.vim/tree/gh-pages), Licence: None
 * [minimal](https://github.com/orderedlist/minimal), Licence: [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)

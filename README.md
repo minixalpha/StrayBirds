@@ -41,7 +41,7 @@ StrayBirds
 - hack
 	![hack-demo](/images/hack-demo.png)
 - leap-day
-	![leep-day-demo](/images/leap-day-demo.png)
+	![leap-day-demo](/images/leap-day-demo.png)
 - merlot
 	![merlot-demo](/images/merlot-demo.png)
 - midnight
