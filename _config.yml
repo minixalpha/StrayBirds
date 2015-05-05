@@ -1,9 +1,9 @@
-username: minixalpha
+username: henryzhao
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
+title: Henryzhao
 description: 人生到处知何似，应似飞鸿踏雪泥
 theme: midnight
 disqusname: minixalpha
