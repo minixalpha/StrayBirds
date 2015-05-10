@@ -54,6 +54,8 @@ StrayBirds
 	![slate-demo](/images/slate-demo.png)
 - time-machine
 	![time-machine-demo](/images/time-machine-demo.png) 
+- kunka
+	![kunka-demo](/images/kunka.png)
 
 * 修改项目名
 
@@ -112,5 +114,6 @@ Thanks to authors of the themes:
 * [modernist](https://github.com/orderedlist/modernist), Licence: [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/)
 * [slate](https://github.com/jasoncostello/slate), Licence: MIT
 * [time-machine](https://github.com/jonrohan/time-machine-theme), Licence: None
+* [kunka](https://github.com/pizn/kunka), Licence: MIT, author: [zhanxin.info](http://www.zhanxin.info/)
 
 All the themes are intergrated in the blog template, with some modifies.

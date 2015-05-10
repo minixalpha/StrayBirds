@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+         **
+         * Auther:      掌心
+         * Contact:     http://www.zhanxin.info
+         * Create:      2013.08.10
+         * Theme Name:  Kunka
+         * Authorize:   BY-NC-SA
+         **
+        -->
+        <meta charset="utf-8">
+        <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+        <!-- meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="generator" content="Jekyll" />
+        <meta name="author" content="{{ site.author.name }}" />
+        <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+        <meta name="keywords" content="{{ page.keywords | join: ',' }}" />
+        <!-- atom -->
+        <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="{{ site.baseurl }}{{ site.feed }}" />
+        <link rel="shortcut icon" href="{{ site.favicon }}" type="image/x-icon" />
+        <!-- font-awesome -->
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Spirax' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/css/syntax.css">
+        <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/css/main.css">
+        {% if site.googleAnaly.config %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{ site.googleAnaly.id }}']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0];
+                  s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        {% endif %}
+    </head>
+    <body>
+        <div class="head fn-clear">
+            <div class="header">
+                <h1 class="logo">
+                    <a href="{{ site.baseurl }}/"><i class="icon-anchor"></i></a>
+                </h1>
+                <nav class="nav">
+                    <ul>
+                        {% for link in site.nav %}
+                        {% assign active = nil %}
+                        {% if page.url == link.url%}
+                          {% assign active = 'nav-item-active' %}
+                        {% endif %}
+                        <li class="nav-item {{ active }}">
+                            <a href="{{ site.baseurl }}/{{ link.url }}">
+                                {{ link.text }}
+                            </a>
+                            {{ indicator }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div class="follow">
+                    {% for link in site.follow %}
+                    <a href="{{ link.url }}" target="_blank"><i class="{{ link.class }}"></i></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="contain fn-clear">
+            <div class="container fn-clear">
+                <div class="main">
+                    {{ content }}
+                    {% if page.comments %}
+                        {% include comments.ext %}
+                    {% endif %}
+                </div>
+                <div class="aside">
+                    <div class="aside-contact">
+                        <h4 class="title">About me</h4>
+                        <div class="det fn-clear">
+                            <div class="det-image">
+                                <img src="{{ site.author.imageLink }}" />
+                            </div>
+                            <div class="det-text">
+                                <p>{{ site.author.simpleIntro }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="aside-item">
+                        <h4 class="title">Recent Posts</h4>
+                        <ul class="list">
+                            {% for rpost in site.posts limit:6  %}
+                                <li><a href="{{ site.baseurl }}{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="aside-item">
+                        <h4 class="title">Links</h4>
+                        <ul class="list">
+                            {% for i in site.customLinks %}
+                                {% if i.message == "Friends" %}
+                                    {% for link in i.item %}
+                                    <li><a href="{{ link.url }}" title="{{ link.text }}" target="_blank">{{ link.text }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="footer">
+                <p>Copyright 2013. All rights reserved. Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, Design by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a>.</p>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
+        
+    </body>
+</html>

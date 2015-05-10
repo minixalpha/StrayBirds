@@ -1,0 +1,27 @@
+<div class="article article-post">
+    <h2 class="title">{{ page.title }}</h2>
+    <div class="info">
+        <span class="info-title"><i class="icon-calendar"></i> Published: </span>
+        <span class="info-date">{{ page.date | date_to_string }}</span>
+        <span class="info-title"><i class="icon-folder-open"></i> Category: </span>
+        <span class="info-link"><a href="{{ site.url }}/navigations/categories.html#{{ page.category }}-ref" >{{ page.category }}</a></span>
+    </div>
+    {{ content }}
+    <nav class="article-previous fn-clear">
+        {% if page.previous %}
+        <a class="prev" href="{{site.baseurl}}/{{ page.previous.url }}" rel="bookmark">&laquo;&nbsp;{{ page.previous.title | truncatewords:5 }}</a>
+        {% endif %}
+        {% if page.next %}
+        <a class="next" href="{{site.baseurl}}/{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;&raquo;</a>
+        {% endif %}
+    </nav>
+    <div class="comment">
+        {% if site.disqus.config %}
+        <div id="disqus_thread"></div>
+        {% else %}
+            {% if site.duoshuo.config %}
+            <div class="ds-thread"></div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
