@@ -50,7 +50,7 @@ url: /StrayBirds
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
-#Nav config
+#Nav configus [丨]
 nav:
   - text: 首页
     url: index.html
@@ -115,7 +115,7 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: tencrance
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
