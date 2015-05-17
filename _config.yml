@@ -116,7 +116,7 @@ disqus:
 #################################### global configure #######################################
 
 username: tencrance
-baseurl: /StrayBirds
+baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
