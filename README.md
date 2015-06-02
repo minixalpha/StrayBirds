@@ -83,9 +83,10 @@ StrayBirds
 
 ```
 ---
-layout: default
+layout: post
 title: Java 中的并发
 comments: true
+category: 技术
 ---
 
 
