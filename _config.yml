@@ -115,7 +115,7 @@ disqus:
 
 #################################### global configure #######################################
 
-username: wdy
+username: wdy1184
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
