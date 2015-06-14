@@ -1,4 +1,4 @@
-yout: post
+layout: post
 title: 第一篇博客
 comments: true
 category: 技术
