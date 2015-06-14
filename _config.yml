@@ -34,7 +34,7 @@ excerpt_separator: "\n\n"
 detach:       false
 port:         4000
 host:         127.0.0.1
-baseurl:      "/wdyblog" # does not include hostname
+baseurl:      "" # does not include hostname
 
 # Outputting
 permalink:     date
@@ -109,8 +109,8 @@ customLinks:
 
 #comment config
 disqus:
-  config: true
-  id: wdy1184
+  config: false
+  id: minixalpha
 
 
 #################################### global configure #######################################
