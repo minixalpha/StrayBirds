@@ -116,7 +116,7 @@ disqus:
 #################################### global configure #######################################
 
 username: wdy1184
-baseurl: /wdyblog
+baseurl: /
 markdown: redcarpet
 safe: false
 highlighter: pygments
