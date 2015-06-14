@@ -120,8 +120,8 @@ baseurl: /wdyblog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
+title: 静以修身，俭以养德
+description: 天行健,君子以自强不息。地势坤,君子以厚德载物。
 theme: merlot
 disqusname: wdy1184
 
