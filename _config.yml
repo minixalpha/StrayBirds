@@ -34,7 +34,7 @@ excerpt_separator: "\n\n"
 detach:       false
 port:         4000
 host:         127.0.0.1
-baseurl:      "" # does not include hostname
+baseurl:      "/wdyblog" # does not include hostname
 
 # Outputting
 permalink:     date
@@ -116,7 +116,7 @@ disqus:
 #################################### global configure #######################################
 
 username: wdy1184
-baseurl: /
+baseurl: 
 markdown: redcarpet
 safe: false
 highlighter: pygments
