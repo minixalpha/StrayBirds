@@ -106,10 +106,9 @@ customLinks:
     message: 其他相关链接
 
 #comment config
-comments :
-    provider : duoshuo
-    duoshuo : 
-      short_name : wdy1184
+disqus:
+  config: false
+  id: minixalpha
 
 
 #################################### global configure #######################################

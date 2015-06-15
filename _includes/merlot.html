@@ -49,7 +49,9 @@
       </section>
 
       <section id="comments">
-
+        {% if page.comments %}
+          {% include comments.ext %}
+        {% endif %}
       </section>
 
       <footer>
