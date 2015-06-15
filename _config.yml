@@ -43,25 +43,25 @@ timezone:      null
 
 
 #Site config
-title: Jekyll Theme
-description: Just another Jekyll theme design and code by zhanxin.info.
-keywords: Jekyll Theme
-url: /StrayBirds
-feed: /atom.xml
+title: yang's blog
+description: 丹阳的博客
+keywords: 丹阳的博客
+url: wdy1184.com
+feed: 
 favicon: http://jekyllrb.com/favicon.png
 
 #Nav config
-nav:
-  - text: 首页
-    url: index.html
-  - text: 分类目录 
-    url: navigations/categories.html
-  - text: 文章归档
-    url: navigations/archives.html
-  - text: 联系我
-    url: navigations/contact.html
-  - text: 友情链接
-    url: navigations/links.html
+# nav:
+#   - text: 首页
+#     url: index.html
+#   - text: 分类目录 
+#     url: navigations/categories.html
+#   - text: 文章归档
+#     url: navigations/archives.html
+#   - text: 联系我
+#     url: navigations/contact.html
+#   - text: 友情链接
+#     url: navigations/links.html
 
 #Author config
 author:
@@ -101,16 +101,15 @@ customLinks:
   - item:
     - text: Font Awesome
       url: http://fortawesome.github.io/Font-Awesome/
-    - text: Google Font
-      url: http://www.google.com/fonts/
     - text: jQuery
       url: http://jquery.com/
     message: 其他相关链接
 
 #comment config
-disqus:
-  config: false
-  id: minixalpha
+comments :
+    provider : duoshuo
+    duoshuo : 
+      short_name : wdy1184
 
 
 #################################### global configure #######################################
@@ -120,10 +119,9 @@ baseurl:
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 静以修身，俭以养德
+title: 平心静气
 description: 天行健,君子以自强不息。地势坤,君子以厚德载物。
 theme: merlot
-disqusname: wdy1184
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
