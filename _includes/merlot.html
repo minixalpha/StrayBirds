@@ -49,9 +49,10 @@
       </section>
 
       <section id="comments">
-        {% if page.comments %}
+      <!-- 这里是disqus的评论系统，适合于英文网站 -->
+<!--         {% if page.comments %}
           {% include comments.ext %}
-        {% endif %}
+        {% endif %} -->
 <!-- Duoshuo Comment BEGIN -->
         <div class="ds-thread" {% if page.id %}data-thread-key="{{ page.id }}"{% endif %}  data-title="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}"></div>
 <!-- Duoshuo Comment END -->
