@@ -16,7 +16,7 @@ StrayBirds
 
 1. 注册 GitHub，得到用户名，例如 minixbeta
 2. 到 [StrayBirds](https://github.com/minixalpha/StrayBirds) 页面，单击右上
-角的 Fork
+角的 Fork...
 3. 到你 Fork 后的项目中，将 `_config.yml` 中的 username 修改为你的用户名 minixbeta
 4. 访问你的博客 http://minixbeta.github.io/StrayBirds/
 
