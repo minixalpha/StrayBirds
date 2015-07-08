@@ -115,14 +115,14 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: peiyanhuang
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
 highlighter: pygments
 title: 飞鸟集
 description: 人生到处知何似，应似飞鸿踏雪泥
-theme: kunka
+theme: leap-day
 disqusname: minixalpha
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
