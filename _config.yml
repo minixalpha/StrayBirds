@@ -110,7 +110,7 @@ customLinks:
 #comment config
 disqus:
   config: false
-  id: minixalpha
+  id: disqus_AaronLeigh
 
 
 #################################### global configure #######################################
