@@ -115,15 +115,15 @@ disqus:
 
 #################################### global configure #######################################
 
-username: AaronLeigh
+username: mindclear
 baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: AaronLeigh专栏
+title: MindClear
 description: 生命是一种长期而持续的积累过程
 theme: modernist
-disqusname: disqus_AaronLeigh
+disqusname: mindclear
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
