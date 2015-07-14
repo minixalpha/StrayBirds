@@ -110,7 +110,7 @@ customLinks:
 #comment config
 disqus:
   config: false
-  id: disqus_AaronLeigh
+  id: mindclear
 
 
 #################################### global configure #######################################
