@@ -7,7 +7,7 @@ title: Categories
     <ul class="categories">
     {% assign categories_list = site.categories %}
     {% for category in categories_list %}
-        <li class="categories-item"><a href="{{ baseurl }}{{ site.JB.categories_path }}#{{ category[0] }}-ref">
+        <li class="categories-item"><a href="{{ site.baseurl }}{{ site.JB.categories_path }}#{{ category[0] }}-ref">
             {{ category[0] | join: "/" }}
         </a></li>
     {% endfor %}
@@ -21,7 +21,7 @@ title: Categories
     {% for node in pages_list %}
       {% if node.title != null %}
         {% if group == null or group == node.group %}
-            <li style="background:#F2EEEC; padding:5px; margin:3px 0"><a href="{{ baseurl }}{{node.url}}">{{node.title}}</a></li>
+            <li style="background:#F2EEEC; padding:5px; margin:3px 0"><a href="{{ site.baseurl }}{{node.url}}">{{node.title}}</a></li>
         {% endif %}
       {% endif %}
     {% endfor %}
