@@ -7,7 +7,7 @@ title: Categories
     <ul class="categories">
     {% assign categories_list = site.categories %}
     {% for category in categories_list %}
-        <li class="categories-item"><a href="{{ site.baseurl }}{{ site.JB.categories_path }}#{{ category[0] }}-ref">
+        <li class="categories-item"><a href="#{{ category[0] }}-ref">
             {{ category[0] | join: "/" }}
         </a></li>
     {% endfor %}
