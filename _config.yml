@@ -115,7 +115,7 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: SwaynColl
 baseurl: /Blog
 markdown: redcarpet
 safe: false
