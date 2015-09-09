@@ -116,12 +116,12 @@ disqus:
 #################################### global configure #######################################
 
 username: minixalpha
-baseurl: /StrayBirds
+baseurl: /Blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
+title: 莫丨亦
+description: 菩提本无树，明镜亦非台……
 theme: kunka
 disqusname: minixalpha
 
