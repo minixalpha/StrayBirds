@@ -1,3 +1,10 @@
+---
+layout: post
+title: test
+comments: true
+category: 随笔
+---
+
 [大亨fly的Blog](http://e0e0.cn)
 ==========
 
