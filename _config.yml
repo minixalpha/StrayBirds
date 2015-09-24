@@ -116,7 +116,7 @@ disqus:
 #################################### global configure #######################################
 
 username: chengyifly
-baseurl: Blog
+baseurl: /Blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
