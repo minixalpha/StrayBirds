@@ -120,7 +120,7 @@ baseurl:
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 大亨fly的博客
+title: 大亨fly的Blog
 description: 在iOS开发之路修行
 theme: minimal
 disqusname: chengyifly
