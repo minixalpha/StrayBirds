@@ -120,10 +120,10 @@ baseurl: /Blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
+title: 大亨fly的博客
+description: 在iOS开发之路修行
 theme: minimal
-disqusname: minixalpha
+disqusname: chengyifly
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
