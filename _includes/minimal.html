@@ -19,14 +19,14 @@
         <p>{{site.description}}</p>
         <p class="view"><a target="_blank" href="https://github.com/{{site.username}}{{site.baseurl}}/">View the Project on GitHub <small>{{site.username}}{{site.baseurl}}</small></a></p>
         <ul>
-        <!--   <li><a href="https://github.com/orderedlist/minimal/zipballmus/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/orderedlist/minimal/tarball/master">Download <strong>TAR Ball</strong></a></li> -->
           <li><a target="_blank" href="https://github.com/{{site.username}}{{site.baseurl}}/">Fork On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
-        <h1>目录</h1>
-{{content}}      
+        {% if !page.comments %}
+            <h1>目录</h1>
+        {% endif %}
+        {{content}}
       </section>
       <section class="comments">
         {% if page.comments %}
