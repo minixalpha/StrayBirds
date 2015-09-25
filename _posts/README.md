@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: test
 comments: true
 category: 随笔
