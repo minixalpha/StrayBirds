@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>{{page.title}}</title>
+    <title>
+        {% if page.comments %}
+            {{page.title}} - {{site.title}}
+        {% else %}
+            {{site.title}}
+        {% endif %}
+    </title>
     
     <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/styles.css">
     <link rel="stylesheet" href="{{site.baseurl}}/themes/{{site.theme}}/stylesheets/pygment_trac.css">
