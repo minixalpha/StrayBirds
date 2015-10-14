@@ -46,7 +46,7 @@ timezone:      null
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Jekyll Theme
-url: /StrayBirds
+url: /blog
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
@@ -78,13 +78,13 @@ follow:
   - class: icon-rss
     url: /atom.xml
   - class: icon-weibo
-    url: http://weibo.com
+    url: http://weibo.com/stone548534
   - class: icon-renren
     url: http://renren.com
   - class: icon-github-alt
-    url: http://github.com
+    url: http://github.com/iStone123
   - class: icon-twitter
-    url: http://twitter.com
+    url: http://twitter.com/Robin.stone
   - class: icon-google-plus
     url: http://google.com
 
@@ -122,7 +122,7 @@ safe: false
 highlighter: pygments
 title: 这里是标题
 description: 这里是描述
-theme: minimal
+theme: midnight
 disqusname: minixalpha
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
