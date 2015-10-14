@@ -46,7 +46,7 @@ timezone:      null
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Jekyll Theme
-url: /StrayBirds
+url: /blog
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
@@ -78,13 +78,13 @@ follow:
   - class: icon-rss
     url: /atom.xml
   - class: icon-weibo
-    url: http://weibo.com
+    url: http://weibo.com/stone548534
   - class: icon-renren
     url: http://renren.com
   - class: icon-github-alt
-    url: http://github.com
+    url: http://github.com/iStone123
   - class: icon-twitter
-    url: http://twitter.com
+    url: http://twitter.com/Robin.stone
   - class: icon-google-plus
     url: http://google.com
 
@@ -110,20 +110,20 @@ customLinks:
 #comment config
 disqus:
   config: false
-  id: minixalpha
+  id: iStone
 
 
 #################################### global configure #######################################
 
-username: minixalpha
-baseurl: /StrayBirds
+username: iStone123
+baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
-theme: kunka
-disqusname: minixalpha
+title: 小石头的私人博客
+description: Ubuntu/Centos,C,Python,Shell,Awk/Sed,Mongodb,Django...
+theme: modernist
+disqusname: iStone
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
