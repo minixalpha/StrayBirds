@@ -120,9 +120,9 @@ baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 这里是标题
-description: 这里是描述
-theme: midnight
+title: 小石头的私人博客
+description: Ubuntu/Centos,C,Python,Shell,Awk/Sed,Mongodb,Django...
+theme: modernist
 disqusname: minixalpha
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
