@@ -110,7 +110,7 @@ customLinks:
 #comment config
 disqus:
   config: false
-  id: minixalpha
+  id: iStone
 
 
 #################################### global configure #######################################
@@ -123,7 +123,7 @@ highlighter: pygments
 title: 小石头的私人博客
 description: Ubuntu/Centos,C,Python,Shell,Awk/Sed,Mongodb,Django...
 theme: modernist
-disqusname: minixalpha
+disqusname: iStone
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
