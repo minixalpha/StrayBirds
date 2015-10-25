@@ -115,13 +115,13 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: haibog
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
 highlighter: pygments
 title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
+description: 聪明的人总是犯错，寂寞的人坐着看花。
 theme: kunka
 disqusname: minixalpha
 
