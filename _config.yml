@@ -115,13 +115,13 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: double12gzh
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
+title: 多功能海参捕捞机器人
+description: 科技改变世界，创新成就未来。
 theme: kunka
 disqusname: minixalpha
 
