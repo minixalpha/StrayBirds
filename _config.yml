@@ -43,10 +43,10 @@ timezone:      null
 
 
 #Site config
-title: Jekyll Theme
-description: Just another Jekyll theme design and code by zhanxin.info.
-keywords: Jekyll Theme
-url: /StrayBirds
+title: Jeffrey Guan Theme
+description: Only for simply display.
+keywords: Jeffrey Guan
+url: /double12gzh
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
