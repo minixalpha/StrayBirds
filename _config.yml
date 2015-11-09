@@ -116,14 +116,14 @@ disqus:
 #################################### global configure #######################################
 
 username: double12gzh
-baseurl: /blog
+baseurl: /handler_je
 markdown: redcarpet
 safe: false
 highlighter: pygments
 title: 多功能海参捕捞机器人
 description: 科技改变世界，创新成就未来。
 theme: kunka
-disqusname: minixalpha
+disqusname: Jeffrey Guan
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
