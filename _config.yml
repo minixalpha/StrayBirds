@@ -92,8 +92,12 @@ follow:
 #Links
 customLinks:
   - item:
-    - text: 掌心
-      url: http://www.zhanxin.info
+    - text: 项目视频演示1
+      url:  http://v.youku.com/v_show/id_XNTM2NjMxNjA4.html?from=s1.8-1-1.2 
+      
+    - text: 项目视频演示2
+      url: http://v.youku.com/v_show/id_XNTM5OTYwNzY4.html?from=y1.7-1.2
+      
     - text: Jeffrey 
       url: http://jekyllrb.com
     - text: Jeffrey Theme
