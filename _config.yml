@@ -105,7 +105,7 @@ customLinks:
 #comment config
 disqus:
   config: true
-  id: nickshen
+  id: fdcqsjn
 
 
 #################################### global configure #######################################
@@ -118,7 +118,7 @@ highlighter: pygments
 title: Shen.Blog
 description: Hello world！
 theme: kunka
-disqusname: nickshen
+disqusname: fdcqsjn
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
