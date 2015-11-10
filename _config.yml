@@ -67,8 +67,8 @@ nav:
 author:
     name: Shen Junnan
     email: fdcqsjn@gmail.comment
-    imageLink: https://avatars.githubusercontent.com/minixalpha
-    simpleIntro: 我是 Shen junnan
+    imageLink: https://avatars0.githubusercontent.com/u/5201122?v=3&u=51dbb8db6c3e7dca04dd46d605b298fb98f35199&s=140
+    simpleIntro: 我是 NickShen
     detailIntro:
       <p>这是我的blog</p>
       <p>ROS/C/C++/Python</p>
@@ -89,16 +89,13 @@ follow:
 #Links
 customLinks:
   - item:
-    - text: 掌心
-      url: http://www.zhanxin.info
-    - text: Jekyll
-      url: http://jekyllrb.com
-    - text: Jekyll Theme
-      url: http://www.zhanxin.info/themes.html
+    - text:
+      url: 
+    - text: 
+      url: 
     message: Friends
   - item:
-    - text: Font Awesome
-      url: http://fortawesome.github.io/Font-Awesome/
+
     - text: Google Font
       url: http://www.google.com/fonts/
     - text: jQuery
@@ -107,8 +104,8 @@ customLinks:
 
 #comment config
 disqus:
-  config: false
-  id: minixalpha
+  config: true
+  id: nickshen
 
 
 #################################### global configure #######################################
@@ -121,7 +118,7 @@ highlighter: pygments
 title: Shen.Blog
 description: Hello world！
 theme: kunka
-disqusname: minixalpha
+disqusname: nickshen
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
