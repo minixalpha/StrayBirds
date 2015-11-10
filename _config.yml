@@ -114,7 +114,7 @@ disqus:
 #################################### global configure #######################################
 
 username: fdcqsjn
-baseurl: /StrayBirds
+baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
