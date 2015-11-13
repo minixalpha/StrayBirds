@@ -117,7 +117,7 @@ safe: false
 highlighter: pygments
 title: Shen.Blog
 description: Hello world！
-theme: kunka
+theme: leap-day
 disqusname: fdcqsjn
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
