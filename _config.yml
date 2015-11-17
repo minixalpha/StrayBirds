@@ -116,7 +116,7 @@ disqus:
 #################################### global configure #######################################
 
 username: lvdou2518
-baseurl: /StrayBirds
+baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
