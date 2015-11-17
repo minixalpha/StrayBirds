@@ -120,9 +120,9 @@ baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 豆豆的博客空间
+title: 豆豆的博客
 description: 一直注重GIS相关行业系统的开发
-theme: midnight
+theme: kunka
 disqusname: lvdou2518
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
