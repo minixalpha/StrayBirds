@@ -120,9 +120,9 @@ baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
-theme: hack
+title: 豆豆的博客空间
+description: 一直注重GIS相关行业系统的开发
+theme: kunka
 disqusname: lvdou2518
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
