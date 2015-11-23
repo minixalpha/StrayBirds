@@ -65,13 +65,13 @@ nav:
 
 #Author config
 author:
-    name: minixalpha
-    email: xkzbeta@outlook.comment
-    imageLink: https://avatars.githubusercontent.com/minixalpha
-    simpleIntro: 我是 minixalpha
+    name: Shen Junnan
+    email: fdcqsjn@gmail.comment
+    imageLink: https://avatars0.githubusercontent.com/u/5201122?v=3&u=51dbb8db6c3e7dca04dd46d605b298fb98f35199&s=140
+    simpleIntro: 我是 NickShen
     detailIntro:
-      <p>Jekyll 是一个简洁的、特别针对博客平台的 静态网站 生成器。它使用一个模板目录作为网站布局的基础框架，并在其上运行 Textile 、 Markdown 或 Liquid 标记语言的转换器，最终生成一个完整的静态Web站点，可以被放置在Apache或者你喜欢的其他任何Web服务器上。它同时也是 GitHub Pages 、一个由 GitHub 提供的用于托管项目主页或博客的服务，在后台所运行的引擎。</p>
-      <p>很早之前，使用过 wordpress 来写博客。但是还要处理很多的底层问题。而使用 Jekyll 来写博客，可以很简单，写 Markdown 就好。然而，Jekyll 还很年轻，没有很多主题的支持。这里的主题，就是为 Jekyll 而写的。希望你能喜欢。</p>
+      <p>这是我的blog</p>
+      <p>ROS/C/C++/Python</p>
 
 #Follow me, you can choose your icon by http://fortawesome.github.io/Font-Awesome/icons/#brand
 follow:
@@ -79,8 +79,6 @@ follow:
     url: /atom.xml
   - class: icon-weibo
     url: http://weibo.com
-  - class: icon-renren
-    url: http://renren.com
   - class: icon-github-alt
     url: http://github.com
   - class: icon-twitter
@@ -91,16 +89,13 @@ follow:
 #Links
 customLinks:
   - item:
-    - text: 掌心
-      url: http://www.zhanxin.info
-    - text: Jekyll
-      url: http://jekyllrb.com
-    - text: Jekyll Theme
-      url: http://www.zhanxin.info/themes.html
+    - text:
+      url: 
+    - text: 
+      url: 
     message: Friends
   - item:
-    - text: Font Awesome
-      url: http://fortawesome.github.io/Font-Awesome/
+
     - text: Google Font
       url: http://www.google.com/fonts/
     - text: jQuery
@@ -109,21 +104,21 @@ customLinks:
 
 #comment config
 disqus:
-  config: false
-  id: minixalpha
+  config: true
+  id: fdcqsjn
 
 
 #################################### global configure #######################################
 
-username: minixalpha
-baseurl: /StrayBirds
+username: fdcqsjn
+baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
-theme: kunka
-disqusname: minixalpha
+title: Shen.Blog
+description: Hello world！
+theme: kunka 
+disqusname: fdcqsjn
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
