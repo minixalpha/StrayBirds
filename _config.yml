@@ -25,10 +25,21 @@ future:       true
 unpublished:  false
 
 # Conversion
-markdown:     kramdown
+markdown: kramdown
 highlighter:  pygments
 lsi:          false
 excerpt_separator: "\n\n"
+
+kramdown:
+  input: GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  use_coderay: true
+  syntax_highlighter: rouge
+  coderay:
+    coderay_line_numbers:  nil
 
 # Serving
 detach:       false
