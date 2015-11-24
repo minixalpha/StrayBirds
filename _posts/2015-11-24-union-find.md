@@ -5,7 +5,8 @@ category: 算法
 comments: false
 ---
 
-[TOC]
+* TOC
+{:toc}
 
 ## 引子
 
