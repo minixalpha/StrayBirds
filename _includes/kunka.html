@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="aside-item">
-                        <h4 class="title">Recent Posts</h4>
+                        <h4>Recent Posts</h4>
                         <ul class="list">
                             {% for rpost in site.posts limit:6  %}
                                 <li><a href="{{ site.baseurl }}{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></li>
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="aside-item">
-                        <h4 class="title">Links</h4>
+                        <!--><h4 class="title">Links</h4><--><!-->Hide Links<-->
                         <ul class="list">
                             {% for i in site.customLinks %}
                                 {% if i.message == "Friends" %}
@@ -117,7 +117,7 @@
         </div>
         <div class="foot">
             <div class="footer">
-                <p>Copyright 2013. All rights reserved. Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, Design by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a>.</p>
+                <!-->Hide<--><!--><p>Copyright 2013. All rights reserved. Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, Design by <a href="http://www.zhanxin.info" target="_blank">zhanxin.info</a>.</p><-->
             </div>
         </div>
         <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
