@@ -119,7 +119,7 @@ markdown: redcarpet
 safe: false
 highlighter: pygments
 title: ShowMeCode
-description: Live with Code
+description: Live With Code
 theme: kunka
 disqusname: laijingfeng
 
