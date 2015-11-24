@@ -5,6 +5,8 @@ category: 算法
 comments: false
 ---
 
+并查集入门
+
 * TOC
 {:toc}
 
@@ -131,4 +133,3 @@ int main(){
 
 nbu 1277 家 族
 
-并查集入门
