@@ -41,7 +41,6 @@ permalink:     date
 paginate_path: /page:num
 timezone:      null
 
-
 #Site config
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
@@ -74,44 +73,43 @@ author:
       <p>Hello Code</p>
 
 #Follow me, you can choose your icon by http://fortawesome.github.io/Font-Awesome/icons/#brand
-follow:
-  - class: icon-rss
-    url: /atom.xml
-  - class: icon-weibo
-    url: http://weibo.com
-  - class: icon-renren
-    url: http://renren.com
-  - class: icon-github-alt
-    url: http://github.com
-  - class: icon-twitter
-    url: http://twitter.com
-  - class: icon-google-plus
-    url: http://google.com
+#follow:
+#  - class: icon-rss
+#    url: /atom.xml
+#  - class: icon-weibo
+#    url: http://weibo.com
+#  - class: icon-renren
+#    url: http://renren.com
+#  - class: icon-github-alt
+#    url: http://github.com
+#  - class: icon-twitter
+#    url: http://twitter.com
+#  - class: icon-google-plus
+#    url: http://google.com
 
 #Links
-customLinks:
-  - item:
-    - text: 掌心
-      url: http://www.zhanxin.info
-    - text: Jekyll
-      url: http://jekyllrb.com
-    - text: Jekyll Theme
-      url: http://www.zhanxin.info/themes.html
-    message: Friends
-  - item:
-    - text: Font Awesome
-      url: http://fortawesome.github.io/Font-Awesome/
-    - text: Google Font
-      url: http://www.google.com/fonts/
-    - text: jQuery
-      url: http://jquery.com/
-    message: 其他相关链接
+#customLinks:
+#  - item:
+#    - text: 掌心
+#      url: http://www.zhanxin.info
+#    - text: Jekyll
+#      url: http://jekyllrb.com
+#    - text: Jekyll Theme
+#      url: http://www.zhanxin.info/themes.html
+#    message: Friends
+#  - item:
+#    - text: Font Awesome
+#      url: http://fortawesome.github.io/Font-Awesome/
+#    - text: Google Font
+#      url: http://www.google.com/fonts/
+#    - text: jQuery
+#      url: http://jquery.com/
+#    message: 其他相关链接
 
 #comment config
-disqus:
-  config: false
-  id: laijingfeng
-
+#disqus:
+#  config: false
+#  id: laijingfeng
 
 #################################### global configure #######################################
 
