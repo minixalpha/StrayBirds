@@ -107,9 +107,9 @@ author:
 #    message: 其他相关链接
 
 #comment config
-#disqus:
-#  config: false
-#  id: laijingfeng
+disqus:
+  config: false
+  id: laijingfeng
 
 #################################### global configure #######################################
 
