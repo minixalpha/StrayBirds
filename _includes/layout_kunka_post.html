@@ -15,13 +15,4 @@
         <a class="next" href="{{site.baseurl}}/{{ page.next.url }}" rel="bookmark">{{ page.next.title | truncatewords:5 }}&nbsp;&raquo;</a>
         {% endif %}
     </nav>
-    <div class="comment">
-        {% if site.disqus.config %}
-        <div id="disqus_thread"></div>
-        {% else %}
-            {% if site.duoshuo.config %}
-            <div class="ds-thread"></div>
-            {% endif %}
-        {% endif %}
-    </div>
 </div>
