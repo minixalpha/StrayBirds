@@ -46,7 +46,7 @@ timezone:      null
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Jekyll Theme
-url: /StrayBirds
+url: /LJBlog
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
@@ -119,7 +119,7 @@ username: jianli2017
 baseurl: /LJBlog
 markdown: redcarpet
 safe: false
-highlighter: pygments
+rouge: pygments
 title: 程序员人生
 description: 人生到处知何似，应似飞鸿踏雪泥
 theme: leap-day
