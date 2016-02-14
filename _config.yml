@@ -117,7 +117,7 @@ disqus:
 
 username: jianli2017
 baseurl: /LJBlog
-markdown: redcarpet
+markdown: kramdown
 safe: false
 rouge: pygments
 title: 程序员人生
