@@ -29,3 +29,5 @@ Error installing jekyll:
 
 jekyll build 
 jekyll serve
+
+参考文档：http://blog.csdn.net/on_1y/article/details/19259435
