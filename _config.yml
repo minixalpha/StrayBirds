@@ -26,7 +26,7 @@ unpublished:  false
 
 # Conversion
 markdown:     kramdown
-highlighter:  pygments
+rouge:  pygments
 lsi:          false
 excerpt_separator: "\n\n"
 
@@ -46,7 +46,7 @@ timezone:      null
 title: Jekyll Theme
 description: Just another Jekyll theme design and code by zhanxin.info.
 keywords: Jekyll Theme
-url: /StrayBirds
+url: /LJBlog
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
@@ -65,8 +65,8 @@ nav:
 
 #Author config
 author:
-    name: minixalpha
-    email: xkzbeta@outlook.comment
+    name: jianli2017
+    email: jianli2017@163.com
     imageLink: https://avatars.githubusercontent.com/minixalpha
     simpleIntro: 我是 minixalpha
     detailIntro:
@@ -115,14 +115,14 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
-baseurl: /StrayBirds
-markdown: redcarpet
+username: jianli2017
+baseurl: /LJBlog
+markdown: kramdown
 safe: false
-highlighter: pygments
-title: 飞鸟集
+rouge: pygments
+title: 程序员人生
 description: 人生到处知何似，应似飞鸿踏雪泥
-theme: kunka
+theme: leap-day
 disqusname: minixalpha
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
