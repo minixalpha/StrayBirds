@@ -11,6 +11,7 @@ category: 技术
 定时器作为一种基础组件在各个系统中都必不可少。而定时器的实现方式有很多种，了解更多的linux下定时器的实现方式请看[这里](https://www.ibm.com/developerworks/cn/linux/l-cn-timers/#icomments)。在链接的文章关于各个实现方式的效率对比中，发现基于时间轮(Timing-Wheel)方式的实现是在理论意义上效率最高的。作为一个基于时间轮方式实现的时钟系统，我们来简单的分析一下[skynet的时钟系统](https://github.com/cloudwu/skynet/blob/master/skynet-src/skynet_timer.c)。
 ## 数据结构 ##
 ### 定时器 ###
+
 ```c
 struct link_list {
 	struct timer_node head;
@@ -26,6 +27,7 @@ struct timer {
 	uint64_t current_point;
 };
 ```
+
 timer结构体中的**near**字段存储的是与当前时间在TIME_NEAR-1范围内触发的定时事件，而字段**t**的设置是跟TIME_NEAR和TIME_LEVEL的属性有关
 ```c
 #define TIME_NEAR_SHIFT 8
