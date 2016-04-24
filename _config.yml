@@ -65,8 +65,8 @@ nav:
 
 #Author config
 author:
-    name: minixalpha
-    email: xkzbeta@outlook.comment
+    name: TRUEJASONFANS
+    email: 472508570@qq.com
     imageLink: https://avatars.githubusercontent.com/minixalpha
     simpleIntro: 我是 minixalpha
     detailIntro:
@@ -115,7 +115,7 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
+username: TRUEJASONFANS
 baseurl: /StrayBirds
 markdown: redcarpet
 safe: false
