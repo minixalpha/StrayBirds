@@ -44,7 +44,7 @@ timezone:      null
 
 #Site config
 title: Jekyll Theme
-description: Just another Jekyll theme design and code by zhanxin.info.
+description: 
 keywords: Jekyll Theme
 url: /blog
 feed: /atom.xml
