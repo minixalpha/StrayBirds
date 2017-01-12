@@ -34,7 +34,7 @@ excerpt_separator: "\n\n"
 detach:       false
 port:         4000
 host:         127.0.0.1
-baseurl:      "" # does not include hostname
+baseurl:      "/wdyblog" # does not include hostname
 
 # Outputting
 permalink:     date
@@ -43,25 +43,25 @@ timezone:      null
 
 
 #Site config
-title: Jekyll Theme
-description: Just another Jekyll theme design and code by zhanxin.info.
-keywords: Jekyll Theme
-url: /StrayBirds
-feed: /atom.xml
+title: yang's blog
+description: 丹阳的博客
+keywords: 丹阳的博客
+url: wdy1184.com
+feed: 
 favicon: http://jekyllrb.com/favicon.png
 
 #Nav config
-nav:
-  - text: 首页
-    url: index.html
-  - text: 分类目录 
-    url: navigations/categories.html
-  - text: 文章归档
-    url: navigations/archives.html
-  - text: 联系我
-    url: navigations/contact.html
-  - text: 友情链接
-    url: navigations/links.html
+# nav:
+#   - text: 首页
+#     url: index.html
+#   - text: 分类目录 
+#     url: navigations/categories.html
+#   - text: 文章归档
+#     url: navigations/archives.html
+#   - text: 联系我
+#     url: navigations/contact.html
+#   - text: 友情链接
+#     url: navigations/links.html
 
 #Author config
 author:
@@ -101,8 +101,6 @@ customLinks:
   - item:
     - text: Font Awesome
       url: http://fortawesome.github.io/Font-Awesome/
-    - text: Google Font
-      url: http://www.google.com/fonts/
     - text: jQuery
       url: http://jquery.com/
     message: 其他相关链接
@@ -115,15 +113,14 @@ disqus:
 
 #################################### global configure #######################################
 
-username: minixalpha
-baseurl: /StrayBirds
+username: wdy1184
+baseurl: 
 markdown: redcarpet
 safe: false
 highlighter: pygments
-title: 飞鸟集
-description: 人生到处知何似，应似飞鸿踏雪泥
-theme: kunka
-disqusname: minixalpha
+title: 平心静气
+description: 天行健,君子以自强不息。地势坤,君子以厚德载物。
+theme: merlot
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
 # those themes are all come from GitHub Pages Themes
