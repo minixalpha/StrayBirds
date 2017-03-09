@@ -106,7 +106,7 @@ safe: false
 highlighter: rouge
 title: 飞鸟集
 description: 人生到处知何似，应似飞鸿踏雪泥
-theme: jekyll-theme-architect
+theme: midnight
 disqusname: acelit
 
 # theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
