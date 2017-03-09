@@ -43,7 +43,7 @@ timezone:      null
 title: Jekyll Theme
 description: default
 keywords: Jekyll Theme
-url: /StrayBirds
+url: /blog
 feed: /atom.xml
 favicon: http://jekyllrb.com/favicon.png
 
