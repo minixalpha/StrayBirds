@@ -26,7 +26,7 @@ unpublished:  false
 
 # Conversion
 markdown:     kramdown
-highlighter:  pygments
+highlighter:  rouge
 lsi:          false
 excerpt_separator: "\n\n"
 
@@ -119,7 +119,7 @@ username: acelit
 baseurl: /blog
 markdown: redcarpet
 safe: false
-highlighter: pygments
+highlighter: rouge
 title: 飞鸟集
 description: 人生到处知何似，应似飞鸿踏雪泥
 theme: hack
