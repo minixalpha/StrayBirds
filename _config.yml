@@ -1,0 +1,100 @@
+
+
+
+######################### theme kunka condigure ##############################################
+# Where things are
+source:       .
+destination:  ./_site
+plugins:      ./_plugins
+layouts:      ./_layouts
+paginate:     8
+
+# Handling Reading
+safe:         false
+include:      [".htaccess"]
+exclude:      []
+keep_files:   [".git", ".svn"]
+encoding:     "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+textile_ext:  "textile"
+
+# Filtering Content
+show_drafts:  null
+limit_posts:  0
+future:       true
+unpublished:  false
+
+# Conversion
+markdown:     kramdown
+highlighter:  pygments
+lsi:          false
+excerpt_separator: "\n\n"
+
+# Serving
+detach:       false
+port:         4000
+host:         127.0.0.1
+baseurl:      "" # does not include hostname
+
+# Outputting
+permalink:     date
+paginate_path: /page:num
+timezone:      null
+
+
+#Site config
+title: Jekyll Theme
+description: Just another Jekyll theme design and code by zhanxin.info.
+keywords: Jekyll Theme
+url: /StrayBirds
+feed: /atom.xml
+favicon: http://jekyllrb.com/favicon.png
+
+#Nav config
+nav:
+  - text: Home
+    url: index.html
+  - text: Categories
+    url: navigations/categories.html
+  - text: Contact Me
+    url: navigations/contact.html
+
+
+#Author config
+author:
+    name: 陆存远
+    email: timelordlu@Foxmail.com
+
+    simpleIntro: l am 陆存远
+    detailIntro:
+      <p>welcome 
+      <p>       to
+      <p>           my 
+      <p>              blog!!!!!!!
+      
+      
+    
+
+
+
+
+#comment config
+disqus:
+  config: 
+  id: timelordlu
+
+
+#################################### global configure #######################################
+
+username: Timelordlulu
+baseurl: /blog
+markdown: redcarpet
+safe: false
+highlighter: pygments
+title: 陆存远
+description: 上海中学学生
+theme: kunka
+
+
+# theme can be: hack, leap-day, merlot, midnight, minimal, modernist, slate, time-machine, kunka
+# those themes are all come from GitHub Pages Themes
