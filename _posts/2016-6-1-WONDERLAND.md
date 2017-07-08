@@ -18,4 +18,4 @@ a place you're going to get lost in it.
 <p>![p1] (z4a.net/images/2017/07/08/IMG_20170517_2114470.jpg)
 <p>![p2]（z4a.net/images/2017/07/08/IMG_20170524_130904.jpg)
 <p>![p3]（z4a.net/images/2017/07/08/IMG_20170524_183144.jpg)
-<p>![p4]（www.z4a.net/images/2017/07/08/IMG_20170524_123105.jpg)
+<p>![p4]（z4a.net/images/2017/07/08/IMG_20170524_123105.jpg)
