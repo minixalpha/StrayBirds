@@ -17,7 +17,7 @@ a place you're going to get lost in it.
    <p>将目光投向远方，一个看上去很深的隧道，但终点依稀可以看见城市的繁荣与熙攘。想必这就是海底城市了吧，你和小a快步走了过去，踏上了探索海底城市的旅途…
 
 ![]({{site.baseurl}}http://www.z4a.net/images/2017/07/08/IMG_20170517_2114470.jpg)
-![](http://www.z4a.net/images/2017/07/08/IMG_20170524_130904.jpg)
+![](gh-pages/http://www.z4a.net/images/2017/07/08/IMG_20170524_130904.jpg)
 ![](http://www.z4a.net/images/2017/07/08/IMG_20170524_183144.jpg)
 ![](http://www.z4a.net/images/2017/07/08/IMG_20170524_123105.jpg)
 
