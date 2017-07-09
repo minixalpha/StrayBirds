@@ -87,7 +87,6 @@ disqus:
 #################################### global configure #######################################
 
 username: Timelordlulu
-baseurl: /blog
 markdown: redcarpet
 safe: false
 highlighter: pygments
