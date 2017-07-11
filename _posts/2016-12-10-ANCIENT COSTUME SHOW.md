@@ -4,6 +4,7 @@ title: ANCIENT COSTUME SHOW
 category: school life
 ---
 一朝御笔闻诗意，千里乘风踏歌行
+
 # 记上海中学2018届3班艺术节特色节目
 
 <p>古往今来，文字作为载体，贯彻融合中国上下五千年。如今，踏着前人的足迹，让我们一同品味那最初的声音。或许是贤君，或许是情郎，他们在寻找，寻找脑海中缥缈而
@@ -15,4 +16,5 @@ category: school life
 靖康之变，残破的繁华苟安与江南，引得多少豪杰呼喊，喊一句不甘：“怒发冲冠，凭阑处、潇潇雨歇。抬望眼，仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。
 莫等闲、白了少年头，空悲切！”
 <p>伴着袅绕的字，伴着动人的曲，我们回环往复，看见历史的面容，体会岁月的声音，一朝御笔闻诗意，千里乘风踏歌行！
-<img src="/image/yishujie1.png">
+<img src="http://www.z4a.net/images/2017/07/11/yishujie1.png" alt="yishujie1.png" border="0">
+<img src="http://www.z4a.net/images/2017/07/11/yishujie2.jpg" alt="yishujie2.jpg" border="0">
