@@ -3,7 +3,7 @@ layout: default
 title: From "Deep Blue" to "Waston"
 category: tech
 ---
-  How will Artificial Intelligence develope in the future?......
+How will Artificial Intelligence develope in the future?......
  
 # 人工智能的近代发展
 <p>这里介绍的是从1997年5月，国际象棋大师卡斯帕罗夫败于IBM公司的超级电脑“深蓝”开始。“深蓝”下棋的原理和人类截然不同，人类通常会利用战术，大局观来取得比赛
