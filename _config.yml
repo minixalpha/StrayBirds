@@ -5,7 +5,7 @@
 # Where things are
 source:       .
 destination:  ./_site
-plugins:      ./_plugins
+plugins:      ./_plugins_dir
 layouts:      ./_layouts
 paginate:     8
 
