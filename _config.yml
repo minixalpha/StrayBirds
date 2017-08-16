@@ -87,7 +87,6 @@ disqus:
 #################################### global configure #######################################
 
 username: Timelordlulu
-markdown: redcarpet
 safe: false
 highlighter: pygments
 title: 陆存远
