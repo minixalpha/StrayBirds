@@ -1,5 +1,19 @@
 <div class="article article-post">
     <h2 class="title">{{ page.title }}</h2>
+    <div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+    owner: 'Timelordlulu',
+    repo: 'Timelordlulu/timelordlulu.github.io',
+    oauth: {
+        client_id: 'f575554aa69f6f3a7fe6',
+        client_secret: '573da4d988e74a9d87982055157e2aa060c6de8b',
+    },
+});
+gitment.render('gitmentContainer');
+</script>
     <div class="info">
         <span class="info-title"><i class="icon-calendar"></i> Published: </span>
         <span class="info-date">{{ page.date | date_to_string }}</span>
@@ -26,17 +40,4 @@
     </div>
 </div>
 
-<div id="gitmentContainer"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-    owner: 'Timelordlulu',
-    repo: 'Timelordlulu/timelordlulu.github.io',
-    oauth: {
-        client_id: 'f575554aa69f6f3a7fe6',
-        client_secret: '573da4d988e74a9d87982055157e2aa060c6de8b',
-    },
-});
-gitment.render('gitmentContainer');
-</script>
+
