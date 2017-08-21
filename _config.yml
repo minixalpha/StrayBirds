@@ -79,9 +79,7 @@ author:
 
 
 #comment config
-disqus:
-  config: 
-  id: timelordlu
+intensedebate_comments: true
 
 
 #################################### global configure #######################################
